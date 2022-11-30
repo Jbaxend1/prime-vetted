@@ -4,14 +4,14 @@ import Select from '@mui/material/Select';
 import  Box  from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import  InputLabel  from '@mui/material/InputLabel';
-import './HomePage.css'
+
 
 
 
 function Program(){
     return(
         <>
-        <Box component='form' display='flex' justifyContent='center'>
+        <Box component='form' display='flex' justifyContent='right'>
             <FormControl variant='outlined' className="formcontrol"  sx={{width: 500, margin:'16px'}}>
             <InputLabel id='search_label' placeholder='search'></InputLabel>
             <TextField labelId='search_label' />
@@ -23,7 +23,7 @@ function Program(){
                     labelId="cohort_type_label"
                     id='cohort_type'
                     >
-                    <MenuItem>All</MenuItem>
+                    <MenuItem>All Programs</MenuItem>
                     <MenuItem>FSE</MenuItem>
                     <MenuItem>UX</MenuItem>
                     </Select>
