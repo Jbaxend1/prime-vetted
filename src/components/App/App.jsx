@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+import SideNav from '../SideNav/SideNav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -20,6 +21,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StudentView from '../StudentView/StudentView';
+
 import './App.css';
 
 function App() {
@@ -48,8 +50,10 @@ function App() {
             <AboutPage />
           </Route>
 
+
+
           <Route
-            // shows AboutPage at all times (logged in or not)
+            // shows the student page
             exact
             path="/student"
           >
