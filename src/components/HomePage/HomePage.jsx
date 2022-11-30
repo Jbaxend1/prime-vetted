@@ -1,3 +1,6 @@
+
+import Program from './Program';
+import './HomePage.css'
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -43,6 +46,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
 function HomePage() {
     return (
+        <>
+        <Program/>
+        <br/>
       <TableContainer elevation={8} component={Card}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -73,6 +79,8 @@ function HomePage() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      </>
     );
   }
 
