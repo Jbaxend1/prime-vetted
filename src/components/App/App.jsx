@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+import SideNav from '../SideNav/SideNav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -20,6 +21,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import StudentView from '../StudentView/StudentView';
 
 import './App.css';
 
@@ -35,6 +37,7 @@ function App() {
   return (
     <Router>
       <div>
+        <SideNav />
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -48,6 +51,17 @@ function App() {
           >
             <AboutPage />
           </Route>
+
+
+
+          <Route
+            // shows the student page
+            exact
+            path="/student"
+          >
+            <StudentView />
+          </Route>
+
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -69,9 +83,11 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+
           <ProtectedRoute>
             <HomePage/>
           </ProtectedRoute>
+
 
           <Route
             exact
