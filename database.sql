@@ -1,3 +1,5 @@
+-- Create Table queries
+
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (1000) UNIQUE NOT NULL,
@@ -34,6 +36,8 @@ CREATE TABLE "updates" (
 	"total_vet_tech" NUMERIC,
 	"total_isa" NUMERIC 
 );
+
+-- student table data
 
 insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (1, 'Ammamaria', 'Caveill', 'Panoz', 1, 'UX', 1, '7/9/2022', 'Vet Tech', '5/13/2022');
 
@@ -74,5 +78,20 @@ insert into student (id, first_name, last_name, cohort_name, cohort_id, course_n
 insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (19, 'Barron', 'Antic', 'Acura', 19, 'UX', 19, '5/12/2022', 'Vet Tech', '2/18/2022');
 
 insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (20, 'Linoel', 'Mac Giany', 'Dodge', 20, 'Full Stack', 20, '4/17/2022', 'ISA', '3/2/2022');
-	
-	
+
+
+-- vet_tech table data
+
+INSERT INTO "vet_tech" ("id", "student_id", "coe_status", "comment", "last_reminder_sent_at", "me_form_status")
+VALUES ('2', '3', 'Sent', 'Tried contacting: no answer', '2022-6-12', 'Requested'),
+('3', '6', 'Requested', 'Need to Call', '2022-4-20', 'Recieved'),
+('4', '7', 'Sent', 'Very motivated', '2022-7-13', 'Submitted to VA'),
+('5', '8', 'Requested', 'Need to email', '2022-4-20', 'Paid'),
+('6', '9', 'Sent', 'Call back', '2022-5-24', 'Recieved'),
+('7', '11', 'Recieved', 'Need to Call', '2022-5-20', 'Paid'),
+('8', '12', 'Requested', 'Email back', '2022-7-21', 'Submitted to VA'),
+('9', '15', 'Sent', 'Fun to talk to', '2022-3-16', 'Paid'),
+('10', '16', 'Sent', 'Will get back to me.', '2022-1-20', 'Submitted to VA'),
+('11', '18', 'Requested', 'Need to Call', '2022-4-24', 'Recieved'),
+('12', '19', 'Sent', 'Getting ready to transfer', '2022-8-20', 'Requested')
+;	
