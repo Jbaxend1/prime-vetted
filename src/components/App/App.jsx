@@ -67,7 +67,7 @@ function App() {
         >
           <Toolbar >
             <Typography variant="h6" noWrap component="div" >
-              New Nav Bar??
+              Vetted
               {/* implement later */}
               {/* <Button variant='outlined'>Refresh</Button> */}
             </Typography>
