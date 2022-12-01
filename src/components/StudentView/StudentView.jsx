@@ -4,6 +4,9 @@
 // post that updates the notes 
 // delete to get rid of the the note 
 
+import React from 'react';
+
+
 function StudentView() {
     //consts here 
 

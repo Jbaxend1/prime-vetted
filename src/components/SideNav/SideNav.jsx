@@ -31,7 +31,7 @@ const drawerWidth = 200;
       sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
     >
       <Toolbar >
-        <Typography variant="h6" noWrap component="div" backgroundColor= '#00acb0;'>
+        <Typography variant="h6" noWrap component="div" >
           Permanent drawer
         </Typography>
       </Toolbar>
