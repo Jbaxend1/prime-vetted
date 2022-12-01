@@ -39,13 +39,13 @@ CREATE TABLE "updates" (
 
 -- student table data
 
-insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (1, 'Ammamaria', 'Caveill', 'Panoz', 1, 'UX', 1, '7/9/2022', 'Vet Tech', '5/13/2022');
+insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (1, 'Ammamaria', 'Caveill', 'Panoz', 1, 'UX', 1, '7/9/2022', 'Vet Tech');
 
-insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (2, 'Elayne', 'Jeffcoate', 'Chevrolet', 2, 'Full Stack', 2, '9/21/2022', 'ISA', '10/20/2022');
+insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (2, 'Elayne', 'Jeffcoate', 'Chevrolet', 2, 'Full Stack', 2, '9/21/2022', 'ISA');
 
-insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (3, 'Raddy', 'Curtayne', 'Hyundai', 3, 'UX', 3, '3/10/2022', 'Vet Tech', '3/11/2022');
+insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (3, 'Raddy', 'Curtayne', 'Hyundai', 3, 'UX', 3, '3/10/2022', 'Vet Tech');
 
-insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (4, 'Vonnie', 'Dyson', 'Porsche', 4, 'Full Stack', 4, '12/25/2021', 'ISA', '5/16/2022');
+insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (4, 'Vonnie', 'Dyson', 'Porsche', 4, 'Full Stack', 4, '12/25/2021', 'ISA');
 
 insert into student (id, first_name, last_name, cohort_name, cohort_id, course_name, course_id, graduation, payment_type, placed_at) values (5, 'Brigitta', 'Fasson', 'Oldsmobile', 5, 'Full Stack', 5, '9/5/2022', 'ISA', '1/23/2022');
 
@@ -94,4 +94,7 @@ VALUES ('2', '3', 'Sent', 'Tried contacting: no answer', '2022-6-12', 'Requested
 ('10', '16', 'Sent', 'Will get back to me.', '2022-1-20', 'Submitted to VA'),
 ('11', '18', 'Requested', 'Need to Call', '2022-4-24', 'Recieved'),
 ('12', '19', 'Sent', 'Getting ready to transfer', '2022-8-20', 'Requested')
-;	
+;
+
+SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "student"
+JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id";
