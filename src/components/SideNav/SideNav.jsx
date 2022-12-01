@@ -1,5 +1,5 @@
 // navigation bar for the left side of the page - should be seen throughout app 
-
+import { useHistory, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { Button } from '@mui/material';
@@ -22,6 +22,8 @@ import Typography from '@mui/material/Typography';
 const drawerWidth = 200;
 
  function SideNav() {
+  const history = useHistory();
+
     return(
     <Box sx={{ display: 'flex',}}>
     <CssBaseline />
@@ -55,9 +57,9 @@ const drawerWidth = 200;
       <Divider />
       <List>
           <ListItem >
-            <Link className="navLink" to="/student">
-             Students
-            </Link>
+          
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined' onClick={() => history.push('/student')}> Student</Button>
+
           </ListItem>
 
           <ListItem >
