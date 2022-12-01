@@ -1,7 +1,8 @@
-
+// HomePage View that shows a list of all students with Vet tech program
 import Program from '../Program/Program';
 import './HomePage.css'
 import axios from 'axios';
+// MUI components for Students table 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -36,6 +37,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
   
   // Function to Create and return the data for student in table
+  // lines 40-49 will be replaced with GET request from the DB 
   function createData(name, coeStatus, graduationDate, Status, meFormStatus, cohort, action) {
     return { name,coeStatus, graduationDate, Status, meFormStatus, cohort, action };
   }
@@ -62,13 +64,13 @@ function HomePage() {
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="right">COE Status</StyledTableCell>
               <StyledTableCell align="right">Gradutation Date</StyledTableCell>
-              <StyledTableCell align="right">Status</StyledTableCell>
               <StyledTableCell align="right">M.E Form Status</StyledTableCell>
               <StyledTableCell align="right">Cohort</StyledTableCell>
               <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
+            {/* rows.map will be changed to reflect DB information */}
             {rows.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell component="th" scope="row">
@@ -76,7 +78,6 @@ function HomePage() {
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.coeStatus}</StyledTableCell>
                 <StyledTableCell align="right">{row.graduationDate}</StyledTableCell>
-                <StyledTableCell align="right">{row.Status}</StyledTableCell>
                 <StyledTableCell align="right">{row.meFormStatus}</StyledTableCell>
                 <StyledTableCell align="right">{row.cohort}</StyledTableCell>
                 <StyledTableCell align="right">
