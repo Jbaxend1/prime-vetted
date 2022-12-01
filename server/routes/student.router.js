@@ -9,6 +9,28 @@ router.get('/', (req, res) => {
   // GET route code here
 });
 
+// GET by student id
+
+router.get('/:id', (req, res) => {
+    console.log(req.body);
+    console.log(req.user);
+
+    if (req.isAuthenticated()) {
+        const query = `SELECT * FROM "student" WHERE "id" = $1;`;
+    
+        pool.query(query, [req.params.id, req.user.id])
+          .then(result => {
+            res.send(result.rows[0]);
+          })
+          .catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+          });
+      } else {
+        res.sendStatus(403) // Forbidden
+      }
+})
+
 /**
  * POST route template
  */
