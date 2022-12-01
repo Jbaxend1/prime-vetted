@@ -27,6 +27,21 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  console.log('student comment POST route');
+  console.log(req.body);
+  if (req.isAuthenticated()) {
+    const queryText = `INSERT INTO "vet_tech" ("comment")
+                       VALUES ($1)`;
+    pool.query(queryText, [req.body.comment]).then(() => {
+      res.sendStatus(201);
+    }).catch((error) => {
+      console.log(error);
+      alert('Something went wrong in vet_tech POST');
+      res.sendStatus(500)
+    });
+  } else {
+    res.sendStatus(403); 
+  }
 });
 
 module.exports = router;
