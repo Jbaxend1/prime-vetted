@@ -14,47 +14,38 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
+import { ReactComponent as Logo } from './logo-prime-horizontal.svg';
 // may be implemented later
 //import ListItemButton from '@mui/material/ListItemButton';
 //import ListItemText from '@mui/material/ListItemText';
 
 
-const drawerWidth = 200;
 
- function SideNav() {
+
+ function SideNav({drawerWidth = 200}) {
   const history = useHistory();
 
     return(
-    <Box sx={{ display: 'flex',}}>
-    <CssBaseline />
-    <AppBar
-      
-      position="fixed"
-      sx={{   bgcolor: '#00acb0', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-    >
-      <Toolbar >
-        <Typography variant="h6" noWrap component="div" >
-          New Nav Bar
-          {/* implement later */}
-          {/* <Button variant='outlined'>Refresh</Button> */}
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    // <Box sx={{ display: 'flex',}}>
+    // <CssBaseline />
+
     <Drawer
+      PaperProps={{sx: {backgroundColor: '#222', padding: '20px'}}}
       sx={{
-        backgroundColor: '#cfe8fc',
         width: drawerWidth,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
         },
+        
       }}
       variant="permanent"
       anchor="left"
     >
-      <Toolbar />
-      <Divider />
+
+      
+      <Logo />
       <List>
           <ListItem >
           
@@ -71,17 +62,18 @@ const drawerWidth = 200;
           </ListItem>
 
           </List>
+
       <Divider />
     </Drawer>
-    <Box
-      component="main"
-      sx={{ flexGrow: 1, p: 3 }}>
-      <Toolbar />
-      <Typography paragraph>
+  //   <Box
+  //     component="main"
+  //     sx={{ flexGrow: 1, p: 3 }}>
+  //     <Toolbar />
+  //     <Typography paragraph>
         
-     </Typography>     
-    </Box>
-  </Box>
+  //    </Typography>     
+  //   </Box>
+  // </Box>
     );
  }
 

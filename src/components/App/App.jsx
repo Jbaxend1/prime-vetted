@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,8 +23,16 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StudentView from '../StudentView/StudentView';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import './App.css';
+
+const drawerWidth = 200;
 
 function App() {
   const dispatch = useDispatch();
@@ -36,9 +45,35 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <SideNav />
-        {/* <Nav /> */}
+      <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <Box
+        component="nav"
+        sx={{ width: drawerWidth, height: '100%', flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+          <SideNav/>
+        </Box>
+        
+
+        <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, width: `calc(100% - ${drawerWidth}px)` }}
+        >
+        <AppBar
+          
+          position="fixed"
+          sx={{   bgcolor: '#00acb0', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        >
+          <Toolbar >
+            <Typography variant="h6" noWrap component="div" >
+              New Nav Bar??
+              {/* implement later */}
+              {/* <Button variant='outlined'>Refresh</Button> */}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{paddingTop: '50px'}}>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -136,8 +171,10 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
-      </div>
+        </Box>
+        </Box>
+        </Box>
+        {/* <Footer /> */}
     </Router>
   );
 }
