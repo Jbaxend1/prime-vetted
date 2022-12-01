@@ -9,12 +9,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
-import TextField from '@mui/material/TextField';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import CardMedia from '@mui/material/CardMedia';
+import TextField from '@mui/material/TextField';
 
 
 function StudentView() {
@@ -28,25 +28,38 @@ return(
     {/* insert container here */}
 <CssBaseline />
 <Container fixed>
-<Box sx={{ bgcolor: '#00acb0', height: '50vh' }}>
+<img
+ className="student-img"
+height="100"
+ width={100}
+src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-vector-png-transparent.png"
+alt="placeholder icon"/>
     <Card>
         <CardContent>
-            <img
-                    component="img"
-                    height="100"
-                    width={100}
-                    src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-vector-png-transparent.png"
-                    alt="placeholder icon"/>
-            <Typography> Student Name</Typography>
-            <Typography>Placed</Typography>
+            <Typography> Holly May</Typography>
+            {/* here will change depending on student status */}
+            <Typography>
+                Placed <br/>
+                M.E Status <br/>
 
 
+            </Typography>
+            
+            <CardActions>
+            <TextField
+                id="outlined-multiline-static"
+                label="Notes"
+                multiline
+                rows={4}
+                defaultValue="Notes here"
+                />
+            </CardActions>
         </CardContent>
 
     </Card>
 
     
-</Box>
+
 </Container>
 
 </div>
