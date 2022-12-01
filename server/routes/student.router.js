@@ -7,6 +7,19 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
+  console.log('student GET route');
+  if (req.isAuthenticated()) {
+    const queryText = `SELECT * FROM "student"`;
+    pool.query(queryText).then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      alert('Something went wrong in student GET');
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);
+  }
 });
 
 /**
