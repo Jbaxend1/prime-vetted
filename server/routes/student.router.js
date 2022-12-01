@@ -12,8 +12,6 @@ router.get('/', (req, res) => {
 // GET by student id
 
 router.get('/:id', (req, res) => {
-    console.log(req.body);
-    console.log(req.user);
 
     if (req.isAuthenticated()) {
         const query = `SELECT * FROM "student" WHERE "id" = $1;`;
@@ -29,7 +27,7 @@ router.get('/:id', (req, res) => {
       } else {
         res.sendStatus(403) // Forbidden
       }
-})
+});
 
 /**
  * POST route template
