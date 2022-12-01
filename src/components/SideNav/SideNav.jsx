@@ -1,8 +1,8 @@
 // navigation bar for the left side of the page - should be seen throughout app 
-
+import { useHistory, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-
+import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import React from 'react';
 import Box from '@mui/material/Box';
@@ -14,72 +14,66 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
+import { ReactComponent as Logo } from './logo-prime-horizontal.svg';
 // may be implemented later
 //import ListItemButton from '@mui/material/ListItemButton';
 //import ListItemText from '@mui/material/ListItemText';
 
 
-const drawerWidth = 200;
 
- function SideNav() {
+
+ function SideNav({drawerWidth = 200}) {
+  const history = useHistory();
+
     return(
-    <Box sx={{ display: 'flex' }}>
-    <CssBaseline />
-    <AppBar
-      backgroundColor= '#00acb0;'
-      position="fixed"
-      sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-    >
-      <Toolbar >
-        <Typography variant="h6" noWrap component="div" backgroundColor= '#00acb0;'>
-          Permanent drawer
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    // <Box sx={{ display: 'flex',}}>
+    // <CssBaseline />
+
     <Drawer
+      PaperProps={{sx: {backgroundColor: '#222', padding: '20px'}}}
       sx={{
-        backgroundColor: '#00acb0;',
         width: drawerWidth,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
         },
+        
       }}
       variant="permanent"
       anchor="left"
     >
-      <Toolbar />
-      <Divider />
+
+      
+      <Logo />
       <List>
           <ListItem >
-            <Link className="navLink" to="/student">
-             Students
-            </Link>
+          
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined' onClick={() => history.push('/home')}> Home </Button>
+
           </ListItem>
 
           <ListItem >
-            <Link className="navLink" to="/reports">
-             Reports
-            </Link>
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Reports</Button>
           </ListItem>
 
           <ListItem>
-          <LogOutButton className="navLink" />
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Log out </Button>
           </ListItem>
 
           </List>
+
       <Divider />
     </Drawer>
-    <Box
-      component="main"
-      sx={{ flexGrow: 1, p: 3 }}>
-      <Toolbar />
-      <Typography paragraph>
+  //   <Box
+  //     component="main"
+  //     sx={{ flexGrow: 1, p: 3 }}>
+  //     <Toolbar />
+  //     <Typography paragraph>
         
-     </Typography>     
-    </Box>
-  </Box>
+  //    </Typography>     
+  //   </Box>
+  // </Box>
     );
  }
 
