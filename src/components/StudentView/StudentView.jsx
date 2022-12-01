@@ -5,24 +5,29 @@
 // delete to get rid of the the note 
 
 import React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 
 function StudentView() {
-    //consts here 
+//consts here 
 
-    //get post put deletes here 
+ //get post put deletes here 
 
-    //return here 
-    return(
-        <div className="studentContainer">
-            {/* insert container here */}
+//return here 
+return(
+<div className="studentContainer">
+    {/* insert container here */}
+<CssBaseline />
+<Container fixed>
+<Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }}>
+    <p> test data</p>
+</Box>
+</Container>
 
-            <p> hi, im the student you clicked on </p>
-    
-
-        </div>
+</div>
     )
-
 }
 
 export default StudentView;

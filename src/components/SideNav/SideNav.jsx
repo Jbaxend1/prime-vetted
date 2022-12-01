@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-
+import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import React from 'react';
 import Box from '@mui/material/Box';
@@ -23,22 +23,24 @@ const drawerWidth = 200;
 
  function SideNav() {
     return(
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex',}}>
     <CssBaseline />
     <AppBar
-      backgroundColor= '#00acb0;'
+      
       position="fixed"
-      sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      sx={{   bgcolor: '#00acb0', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
     >
       <Toolbar >
         <Typography variant="h6" noWrap component="div" >
-          Permanent drawer
+          New Nav Bar
+          {/* implement later */}
+          {/* <Button variant='outlined'>Refresh</Button> */}
         </Typography>
       </Toolbar>
     </AppBar>
     <Drawer
       sx={{
-        backgroundColor: '#00acb0;',
+        backgroundColor: '#cfe8fc',
         width: drawerWidth,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
@@ -59,13 +61,11 @@ const drawerWidth = 200;
           </ListItem>
 
           <ListItem >
-            <Link className="navLink" to="/reports">
-             Reports
-            </Link>
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Reports</Button>
           </ListItem>
 
           <ListItem>
-          <LogOutButton className="navLink" />
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Log out </Button>
           </ListItem>
 
           </List>
