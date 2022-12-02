@@ -66,6 +66,24 @@ router.get('/:id', (req, res) => {
       }
 });
 
+// Get for ISA filter
+router.get('/isa', (req, res) => {
+  // GET route code here
+  console.log('student GET route');
+  if (req.isAuthenticated()) {
+    const queryText = `SELECT * FROM "student" WHERE "payment_type" = 'ISA';`;
+    pool.query(queryText).then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      alert('Something went wrong in ISA GET');
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);
+  }
+});
+
 // POST route for Comments
 
 router.post('/:id', (req, res) => {
