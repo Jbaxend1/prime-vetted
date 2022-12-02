@@ -28,9 +28,11 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
     if (req.isAuthenticated()) {
-        const query = `SELECT * FROM "student" WHERE "id" = $1;`;
+        const query = `SELECT "student"."profile_photo", "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."me_form_status", "vet_tech"."coe_status", "vet_tech"."comment", "vet_tech"."last_reminder_sent_at" FROM "student"
+        JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id"
+        WHERE "student"."id" = '3';`;
     
-        pool.query(query, [req.params.id, req.user.id])
+        pool.query(query, [req.params.id])
           .then(result => {
             res.send(result.rows[0]);
           })
