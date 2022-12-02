@@ -1,6 +1,11 @@
 // HomePage View that shows a list of all students with Vet tech program
 import Program from '../Program/Program';
 import './HomePage.css'
+// react imports
+import {useState, useEffect} from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// axios import
 import axios from 'axios';
 // MUI components for Students table 
 import { styled } from '@mui/material/styles';
@@ -51,9 +56,25 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
  
 function HomePage() {
+    // useState for Vet tech students
+    const [students, setStudents] = useState([]);
+    const history = useHistory();
+    
+    useEffect(() => {
+        fetchStudents()
+    },[])
+    
+    const fetchStudents = () => {
+        axios.get('api/student')
+             .then((response) => {
+                setStudents((response.data))
+             }).catch((error) => {
+                console.log('error in GET students', error);
+                alert('Something went wrong')
+             }) 
+    }
     return (
-        <>
-        
+        <>  
         <Program/>
         <br/>
     <Box display='flex' justifyContent='center'>
@@ -71,15 +92,15 @@ function HomePage() {
           </TableHead>
           <TableBody>
             {/* rows.map will be changed to reflect DB information */}
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+            {students.map((student) => (
+              <StyledTableRow key={student.name}>
                 <StyledTableCell component="th" scope="row">
-                  {row.name}
+                  {student.name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.coeStatus}</StyledTableCell>
-                <StyledTableCell align="right">{row.graduationDate}</StyledTableCell>
-                <StyledTableCell align="right">{row.meFormStatus}</StyledTableCell>
-                <StyledTableCell align="right">{row.cohort}</StyledTableCell>
+                <StyledTableCell align="right">{student.coeStatus}</StyledTableCell>
+                <StyledTableCell align="right">{student.graduationDate}</StyledTableCell>
+                <StyledTableCell align="right">{student.meFormStatus}</StyledTableCell>
+                <StyledTableCell align="right">{student.cohort}</StyledTableCell>
                 <StyledTableCell align="right">
                     <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
