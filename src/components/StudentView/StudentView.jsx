@@ -39,7 +39,7 @@ alt="placeholder icon"/>
             <Typography> Holly May</Typography>
             {/* here will change depending on student status */}
             <Typography>
-                Placed <br/>
+                Coe Status <br/>
                 M.E Status <br/>
 
 
@@ -54,6 +54,7 @@ alt="placeholder icon"/>
                 defaultValue="Notes here"
                 />
             </CardActions>
+            <Button>Save</Button> <Button>Delete</Button>
         </CardContent>
 
     </Card>
