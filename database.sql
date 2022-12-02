@@ -96,5 +96,5 @@ VALUES ('2', '3', 'Sent', 'Tried contacting: no answer', '2022-6-12', 'Requested
 ('12', '19', 'Sent', 'Getting ready to transfer', '2022-8-20', 'Requested')
 ;
 
-SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "student"
-JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id";
+SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "vet_tech"
+FULL OUTER JOIN "student" ON "vet_tech"."student_id" = "student"."id";
