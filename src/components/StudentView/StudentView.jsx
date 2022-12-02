@@ -5,24 +5,32 @@
 // delete to get rid of the the note 
 
 import React from 'react';
+
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+
 import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-
+import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 function StudentView() {
 //consts here 
+// this is for the drop down to change the COE status
+const [coe, setCoe ] = React.useState('');
+
+
 
  //get post put deletes here 
 
-//return here 
+ 
 return(
 <div className="studentContainer">
     {/* insert container here */}
@@ -36,14 +44,29 @@ src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-ve
 alt="placeholder icon"/>
     <Card>
         <CardContent>
-            <Typography> Holly May</Typography>
+            {/* this eventually will be replaced by the student name of on view click */}
+            <Typography variant='h4'> Holly May</Typography> <br />
             {/* here will change depending on student status */}
-            <Typography>
-                Coe Status <br/>
-                M.E Status <br/>
+            <Box sx={{minWidth: 220}}>
+                <FormControl fullWidth >
+                    <InputLabel>COE status</InputLabel>
+                    <Select
+                    id='select-coe-status'
+                    value={coe}
+                    label="coe"
+                    //implement functionality later
+                    // onChange={handlechange}
+                    >
+                    {/* menus items still need values */}
+                        <MenuItem>Requested</MenuItem>
+                        <MenuItem>Received</MenuItem>
+                        <MenuItem>Completed</MenuItem>
 
+                    </Select>
+                </FormControl>
+            </Box>
+            <br/>
 
-            </Typography>
             
             <CardActions>
             <TextField
