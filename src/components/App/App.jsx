@@ -66,7 +66,7 @@ function App() {
           sx={{   bgcolor: '#00acb0', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
         >
           <Toolbar >
-            <Typography variant="h6" noWrap component="div" >
+            <Typography variant="h4" noWrap component="div" >
               Vetted
               {/* implement later */}
               {/* <Button variant='outlined'>Refresh</Button> */}
