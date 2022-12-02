@@ -68,7 +68,7 @@ alt="placeholder icon"/>
             <br/>
 
             
-            <CardActions>
+           
             <TextField
                 id="outlined-multiline-static"
                 label="Notes"
@@ -76,8 +76,10 @@ alt="placeholder icon"/>
                 rows={4}
                 defaultValue="Notes here"
                 />
-            </CardActions>
-            <Button>Save</Button> <Button>Delete</Button>
+                <br />
+                <br/>
+
+            <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Save</Button> <Button style={{color:'red', borderColor:'GrayText'}} variant='outlined'>Delete</Button>
         </CardContent>
 
     </Card>
