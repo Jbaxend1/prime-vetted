@@ -66,6 +66,25 @@ alt="placeholder icon"/>
                 </FormControl>
             </Box>
             <br/>
+            <Box sx={{minWidth: 220}}>
+                <FormControl fullWidth >
+                    <InputLabel>ME Status </InputLabel>
+                    <Select
+                    id='select-coe-status'
+                    value={coe}
+                    label="coe"
+                    //implement functionality later
+                    // onChange={handlechange}
+                    >
+                    {/* menus items still need values */}
+                        <MenuItem> Placed </MenuItem>
+                        <MenuItem> Unplaced </MenuItem>
+                       
+                    </Select>
+                </FormControl>
+            </Box>
+            <br />
+
 
             
            
