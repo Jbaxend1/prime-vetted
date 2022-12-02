@@ -5,11 +5,12 @@ const router = express.Router();
 // GET homepage student list
 
 router.get('/', (req, res) => {
-  // GET route code here
+
   console.log('student GET route');
+
   if (req.isAuthenticated()) {
-    const queryText = `SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "student"
-    JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id";`;
+    const queryText = `SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "vet_tech"
+    FULL OUTER JOIN "student" ON "vet_tech"."student_id" = "student"."id";`;
     pool.query(queryText).then((result) => {
       res.send(result.rows);
     }).catch((error) => {
@@ -21,6 +22,19 @@ router.get('/', (req, res) => {
     res.sendStatus(403);
   }
 });
+
+// GET for Vet-tech Filter
+
+router.get('/vet-tech', (req, res) => {
+    if (req.isAuthenticated()) {
+        const queryText = `SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "student"
+        JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id";`;
+
+    } else {
+        res.sendStatus(403);
+    }
+})
+
 
 // GET Student details by id
 
@@ -53,7 +67,7 @@ router.post('/:id', (req, res) => {
   if (req.isAuthenticated()) {
     const queryText = `INSERT INTO "vet_tech" ("comment")
                        VALUES ($1)
-                       WHERE "student_id" = $2`;
+                       WHERE "student_id" = $2;`;
     pool.query(queryText, [req.body.comment, req.params.id]).then(() => {
       res.sendStatus(201);
     }).catch((error) => {
