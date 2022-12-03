@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   console.log('student GET route');
 
   if (req.isAuthenticated()) {
-    const queryText = `SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "vet_tech"
+    const queryText = `SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."graduation","student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "vet_tech"
     FULL OUTER JOIN "student" ON "vet_tech"."student_id" = "student"."id";`;
     pool.query(queryText).then((result) => {
       res.send(result.rows);

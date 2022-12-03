@@ -40,34 +40,26 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       border: 0,
     },
   }));
-  
-  // Function to Create and return the data for student in table
-  // lines 40-49 will be replaced with GET request from the DB 
-  function createData(name, coeStatus, graduationDate, Status, meFormStatus, cohort, action) {
-    return { name,coeStatus, graduationDate, Status, meFormStatus, cohort, action };
-  }
-  
-  const rows = [
-    createData('Jon B', ),
-    createData('Holly D', ),
-    createData('Aubree H', ),
-    createData('Alex S', ),
-  ];
-
- 
+   
 function HomePage() {
     // useState for Vet tech students
-    const [students, setStudents] = useState([]);
+    const [student, setStudent] = useState([]);
     const history = useHistory();
     
     useEffect(() => {
-        fetchStudents()
+        fetchStudent()
     },[])
     
-    const fetchStudents = () => {
+      // formats Graduation Date
+      const formatGradDate = (grad) => {
+        const date = new Date(grad);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+      }
+
+    const fetchStudent = () => {
         axios.get('api/student')
              .then((response) => {
-                setStudents((response.data))
+                setStudent((response.data))
              }).catch((error) => {
                 console.log('error in GET students', error);
                 alert('Something went wrong')
@@ -92,15 +84,15 @@ function HomePage() {
           </TableHead>
           <TableBody>
             {/* rows.map will be changed to reflect DB information */}
-            {students.map((student) => (
-              <StyledTableRow key={student.name}>
+            {student.map((students) => (
+              <StyledTableRow key={students.name}>
                 <StyledTableCell component="th" scope="row">
-                  {student.name}
+                  {students.first_name} {students.last_name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{student.coeStatus}</StyledTableCell>
-                <StyledTableCell align="right">{student.graduationDate}</StyledTableCell>
-                <StyledTableCell align="right">{student.meFormStatus}</StyledTableCell>
-                <StyledTableCell align="right">{student.cohort}</StyledTableCell>
+                <StyledTableCell align="right">{students.coe_status}</StyledTableCell>
+                <StyledTableCell align="right">{formatGradDate(students.graduation)}</StyledTableCell>
+                <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
+                <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                 <StyledTableCell align="right">
                     <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
