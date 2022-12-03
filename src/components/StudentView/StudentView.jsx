@@ -11,7 +11,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -23,8 +22,9 @@ import InputLabel from '@mui/material/InputLabel';
 
 function StudentView() {
 //consts here 
-// this is for the drop down to change the COE status
+// this is for the drop down to change the COE/MEstatus
 const [coe, setCoe ] = React.useState('');
+const [me, setMe ] = React.useState('');
 
 
 
