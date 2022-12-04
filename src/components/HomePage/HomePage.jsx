@@ -1,6 +1,11 @@
 // HomePage View that shows a list of all students with Vet tech program
 import Program from '../Program/Program';
 import './HomePage.css'
+// react imports
+import {useState, useEffect} from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// axios import
 import axios from 'axios';
 // MUI components for Students table 
 import { styled } from '@mui/material/styles';
@@ -35,25 +40,33 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       border: 0,
     },
   }));
-  
-  // Function to Create and return the data for student in table
-  // lines 40-49 will be replaced with GET request from the DB 
-  function createData(name, coeStatus, graduationDate, Status, meFormStatus, cohort, action) {
-    return { name,coeStatus, graduationDate, Status, meFormStatus, cohort, action };
-  }
-  
-  const rows = [
-    createData('Jon B', ),
-    createData('Holly D', ),
-    createData('Aubree H', ),
-    createData('Alex S', ),
-  ];
-
- 
+   
 function HomePage() {
+    // useState for Vet tech students
+    const [student, setStudent] = useState([]);
+    const history = useHistory();
+    
+    useEffect(() => {
+        fetchStudent()
+    },[])
+    
+      // formats Graduation Date
+      const formatGradDate = (grad) => {
+        const date = new Date(grad);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+      }
+
+    const fetchStudent = () => {
+        axios.get('api/student')
+             .then((response) => {
+                setStudent((response.data))
+             }).catch((error) => {
+                console.log('error in GET students', error);
+                alert('Something went wrong')
+             }) 
+    }
     return (
-        <>
-        
+        <>  
         <Program/>
         <br/>
     <Box display='flex' justifyContent='center'>
@@ -71,15 +84,15 @@ function HomePage() {
           </TableHead>
           <TableBody>
             {/* rows.map will be changed to reflect DB information */}
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+            {student.map((students) => (
+              <StyledTableRow key={students.name}>
                 <StyledTableCell component="th" scope="row">
-                  {row.name}
+                  {students.first_name} {students.last_name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.coeStatus}</StyledTableCell>
-                <StyledTableCell align="right">{row.graduationDate}</StyledTableCell>
-                <StyledTableCell align="right">{row.meFormStatus}</StyledTableCell>
-                <StyledTableCell align="right">{row.cohort}</StyledTableCell>
+                <StyledTableCell align="right">{students.coe_status}</StyledTableCell>
+                <StyledTableCell align="right">{formatGradDate(students.graduation)}</StyledTableCell>
+                <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
+                <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                 <StyledTableCell align="right">
                     <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
