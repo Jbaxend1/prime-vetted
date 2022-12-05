@@ -27,7 +27,8 @@ import InputLabel from '@mui/material/InputLabel';
 function StudentView() {
 //consts here 
 const dispatch = useDispatch();
-
+const store = useSelector(store => store);
+const history = useHistory();
 // this is for the drop down to change the COE/MEstatus
 const [coe, setCoe ] = React.useState('');
 const [me, setMe ] = React.useState('');
