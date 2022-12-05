@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
 // GET by student id
 
 router.get('/:id', (req, res) => {
-
     if (req.isAuthenticated()) {
         const query = `SELECT * FROM "student" WHERE "id" = $1;`;
     
