@@ -42,13 +42,20 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
    
 function HomePage() {
-    // useState for Vet tech students
-    const [student, setStudent] = useState([]);
+ 
     const history = useHistory();
+    const dispatch = useDispatch();
+    
+    // uses reducer and saga to get DB information
+    const allStudents = useSelector(store => store.student);
+    const fetchStudents = () => {
+        dispatch({type: 'FETCH_ALL_STUDENTS'});
+  
+    } 
     
     useEffect(() => {
-        fetchStudent()
-    },[])
+        fetchStudents();
+    },[]);
     
       // formats Graduation Date
       const formatGradDate = (grad) => {
@@ -56,15 +63,9 @@ function HomePage() {
         return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
       }
 
-    const fetchStudent = () => {
-        axios.get('api/student')
-             .then((response) => {
-                setStudent((response.data))
-             }).catch((error) => {
-                console.log('error in GET students', error);
-                alert('Something went wrong')
-             }) 
-    }
+ 
+   
+
     return (
         <>  
         <Program/>
@@ -84,9 +85,9 @@ function HomePage() {
           </TableHead>
           <TableBody>
             {/* rows.map will be changed to reflect DB information */}
-            {student.map((students) => (
+            {allStudents.map((students) => (
               <StyledTableRow key={students.name}>
-                <StyledTableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="allStudents">
                   {students.first_name} {students.last_name}
                 </StyledTableCell>
                 <StyledTableCell align="right">{students.coe_status}</StyledTableCell>
@@ -94,7 +95,7 @@ function HomePage() {
                 <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
                 <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                 <StyledTableCell align="right">
-                    <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
+                    <Button component={Link} to='/student' style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
