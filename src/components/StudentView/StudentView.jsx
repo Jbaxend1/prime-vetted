@@ -27,26 +27,27 @@ const [me, setMe ] = React.useState('');
 
 // will handle the changes for the COE and ME status
 // consult group if this can handle both the coe and the me in one function 
-handleChange(() =>{
-    console.log('changed the COE status', );
-})
+// handleChange(() =>{
+//     console.log('changed the COE status', );
+// })
 
 
 
-// update 
+
+
+
+// update for note 
 const updateNote= (event) => {
     console.log('in the update note function')
     axios.put(`/api/student/${note.id}}`, 
     { 
-        coe: setCoe,
-        me: setMe,
+    
     })
         .then(() => {
             alert('your post was updated!');
-            history.push('/homepage')
         }).catch((error) => {
             console.log(error);
-            alert('Something went wrong in update song!');
+            alert('Something went wrong');
         });
   };
 
@@ -91,7 +92,7 @@ alt="placeholder icon"/>
                     value={coe}
                     label="coe"
                     //implement functionality later
-                    onChange={updateNote}
+                    // onChange={handlechange}
                     >
                     {/* menus items still need values */}
                         <MenuItem>Requested</MenuItem>
@@ -110,7 +111,7 @@ alt="placeholder icon"/>
                     value={coe}
                     label="coe"
                     //implement functionality later
-                    onChange={updateNote}
+                    // onChange={handlechange}
                     >
                     {/* menus items still need values */}
                         <MenuItem> Placed </MenuItem>
@@ -131,7 +132,8 @@ alt="placeholder icon"/>
                 <br/>
             {/*  button to save changes */}
             <Button style={{color:'grey', borderColor:'GrayText'}} 
-            variant='outlined'>
+            variant='outlined'
+            onClick={() => updateNote()}>
                 Save
                 </Button> 
             {/* button to delete comment */}
