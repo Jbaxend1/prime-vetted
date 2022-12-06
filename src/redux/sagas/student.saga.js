@@ -34,12 +34,26 @@ function* fetchIsa() {
     }
 }
 
+// Student Details
+function* fetchDetails(action) {
+    console.log(action.payload);
+
+    try {
+        const studentDetail = yield axios.get(`/api/student/${action.payload}`);
+        yield put({ type: 'SET_STUDENT', payload: studentDetail.data });
+    } catch (e) {
+        console.log(e);
+        alert('Something wrong: student detail saga');
+    }
+}
+
 
 // Watcher
 function* studentSaga() {
     yield takeLatest('FETCH_ALL_STUDENTS', fetchAllStudents);
     yield takeLatest('FETCH_ISA', fetchIsa);
     yield takeLatest('FETCH_VET_TEC', fetchVet);
+    yield takeLatest('FETCH_DETAILS', fetchDetails)
 }
 
 export default studentSaga;

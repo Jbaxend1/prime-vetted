@@ -1,17 +1,10 @@
-// this will be the component that shows the individual student that was selected 
-// get that fetches student with the info and any notes/comments 
-// put that allows user to add a new note 
-// post that updates the notes 
-// delete to get rid of the the note 
-
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import {useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-
+//all mui imports
 import CssBaseline from '@mui/material/CssBaseline';
-
 import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -25,7 +18,6 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 function StudentView() {
-//consts here 
 const dispatch = useDispatch();
 const store = useSelector(store => store);
 const history = useHistory();
@@ -33,16 +25,48 @@ const history = useHistory();
 const [coe, setCoe ] = React.useState('');
 const [me, setMe ] = React.useState('');
 
+// will handle the changes for the COE and ME status
+// consult group if this can handle both the coe and the me in one function 
+handleChange(() =>{
+    console.log('changed the COE status', );
+})
 
-useEffect(() => {
-console.log('use effect active');
-
-}, [] );
 
 
- //get post put deletes here 
+// update 
+const updateNote= (event) => {
+    console.log('in the update note function')
+    axios.put(`/api/student/${note.id}}`, 
+    { 
+        coe: setCoe,
+        me: setMe,
+    })
+        .then(() => {
+            alert('your post was updated!');
+            history.push('/homepage')
+        }).catch((error) => {
+            console.log(error);
+            alert('Something went wrong in update song!');
+        });
+  };
 
- 
+
+
+//delete
+//new function to delete a
+const deleteNote = () => {
+    axios({
+      method: 'DELETE',
+    //ask what the url should be
+    //   url: `/api/student/delete/${note.id}`
+    }).then((response) => {
+      alert(`your note/comment was properly deleted`);
+    }).catch((error) => {
+      console.log(error);
+      alert('Something went wrong!')
+    })
+  }
+
 return(
 <div className="studentContainer">
     {/* insert container here */}
@@ -67,7 +91,7 @@ alt="placeholder icon"/>
                     value={coe}
                     label="coe"
                     //implement functionality later
-                    // onChange={handlechange}
+                    onChange={updateNote}
                     >
                     {/* menus items still need values */}
                         <MenuItem>Requested</MenuItem>
@@ -86,7 +110,7 @@ alt="placeholder icon"/>
                     value={coe}
                     label="coe"
                     //implement functionality later
-                    // onChange={handlechange}
+                    onChange={updateNote}
                     >
                     {/* menus items still need values */}
                         <MenuItem> Placed </MenuItem>
@@ -96,10 +120,6 @@ alt="placeholder icon"/>
                 </FormControl>
             </Box>
             <br />
-
-
-            
-           
             <TextField
                 id="outlined-multiline-static"
                 label="Notes"
@@ -109,8 +129,17 @@ alt="placeholder icon"/>
                 />
                 <br />
                 <br/>
-
-            <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Save</Button> <Button style={{color:'red', borderColor:'GrayText'}} variant='outlined'>Delete</Button>
+            {/*  button to save changes */}
+            <Button style={{color:'grey', borderColor:'GrayText'}} 
+            variant='outlined'>
+                Save
+                </Button> 
+            {/* button to delete comment */}
+            <Button style={{color:'red', borderColor:'GrayText'}} 
+            variant='outlined' 
+            onClick={() => deleteNote()}>
+                Delete
+                </Button>
         </CardContent>
 
     </Card>

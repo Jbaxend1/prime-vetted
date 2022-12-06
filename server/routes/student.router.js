@@ -125,6 +125,25 @@ router.put('/:id', (req, res) => {
     }
 })
 
-// DELETE for comments
+// UPDATE for comments to set "NULL"
+
+router.put('/comment/:id', (req, res) => {
+
+  console.log(req.params.id);
+
+  if(req.isAuthenticated()) {
+    const queryText = `UPDATE "vet_tech" SET "comment" = 'NULL' WHERE "student_id" = $1;`;
+
+    pool.query(queryText, [req.params.id])
+        .then(results => {
+          res.sendStatus(200)
+        }).catch( error => {
+          console.log(error);
+          res.sendStatus(500);
+        });
+  } else {
+    res.sendStatus(403) // Forbidden
+  }
+})
 
 module.exports = router;

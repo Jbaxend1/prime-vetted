@@ -95,7 +95,7 @@ function HomePage() {
                 <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
                 <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                 <StyledTableCell align="right">
-                    <Button component={Link} to='/student' style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
+                    <Button component={Link} to={`/student/`} style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
