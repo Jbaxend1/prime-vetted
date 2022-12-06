@@ -8,4 +8,15 @@ const student = (state = [], action) => {
     return state;
 }
 
-export default student;
+const studentDetail = (state = {}, action) => {
+    if (action.type === 'SET_STUDENT') {
+        return action.payload;
+    }
+
+    return state;
+}
+
+export default combineReducers({
+   student,
+   studentDetail,
+  });
