@@ -47,7 +47,6 @@ router.get('/vet-tech', (req, res) => {
 // GET Student details by id
 
 router.get('/:id', (req, res) => {
-
     if (req.isAuthenticated()) {
         const query = `SELECT "student"."profile_photo", "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."me_form_status", "vet_tech"."coe_status", "vet_tech"."comment", "vet_tech"."last_reminder_sent_at" FROM "student"
         JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id"
