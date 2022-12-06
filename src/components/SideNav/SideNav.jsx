@@ -1,5 +1,6 @@
 // navigation bar for the left side of the page - should be seen throughout app 
 import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { Button } from '@mui/material';
@@ -24,6 +25,7 @@ import { ReactComponent as Logo } from './logo-prime-horizontal.svg';
 
  function SideNav({drawerWidth = 200}) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
     return(
     // <Box sx={{ display: 'flex',}}>
@@ -58,7 +60,7 @@ import { ReactComponent as Logo } from './logo-prime-horizontal.svg';
           </ListItem>
 
           <ListItem>
-          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Log out </Button>
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'   onClick={() => dispatch({ type: 'LOGOUT' })}>Log out </Button>
           </ListItem>
 
           </List>
