@@ -1,7 +1,13 @@
-
+// HomePage View that shows a list of all students with Vet tech program
 import Program from '../Program/Program';
 import './HomePage.css'
+// react imports
+import {useState, useEffect} from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// axios import
 import axios from 'axios';
+// MUI components for Students table 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -34,24 +40,34 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       border: 0,
     },
   }));
+   
+function HomePage() {
+ 
+    const history = useHistory();
+    const dispatch = useDispatch();
+    
+    // uses reducer and saga to get DB information
+    const allStudents = useSelector(store => store.student);
+    const fetchStudents = () => {
+        dispatch({type: 'FETCH_ALL_STUDENTS'});
   
-  // Function to Create and return the data for student in table
-  function createData(name, coeStatus, graduationDate, Status, meFormStatus, cohort, action) {
-    return { name,coeStatus, graduationDate, Status, meFormStatus, cohort, action };
-  }
-  
-  const rows = [
-    createData('Jon B', ),
-    createData('Holly D', ),
-    createData('Aubree H', ),
-    createData('Alex S', ),
-  ];
+    } 
+    
+    useEffect(() => {
+        fetchStudents();
+    },[]);
+    
+      // formats Graduation Date
+      const formatGradDate = (grad) => {
+        const date = new Date(grad);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+      }
 
  
-function HomePage() {
+   
+
     return (
-        <>
-        
+        <>  
         <Program/>
         <br/>
     <Box display='flex' justifyContent='center'>
@@ -62,25 +78,24 @@ function HomePage() {
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="right">COE Status</StyledTableCell>
               <StyledTableCell align="right">Gradutation Date</StyledTableCell>
-              <StyledTableCell align="right">Status</StyledTableCell>
               <StyledTableCell align="right">M.E Form Status</StyledTableCell>
               <StyledTableCell align="right">Cohort</StyledTableCell>
               <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row">
-                  {row.name}
+            {/* rows.map will be changed to reflect DB information */}
+            {allStudents.map((students) => (
+              <StyledTableRow key={students.name}>
+                <StyledTableCell component="th" scope="allStudents">
+                  {students.first_name} {students.last_name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.coeStatus}</StyledTableCell>
-                <StyledTableCell align="right">{row.graduationDate}</StyledTableCell>
-                <StyledTableCell align="right">{row.Status}</StyledTableCell>
-                <StyledTableCell align="right">{row.meFormStatus}</StyledTableCell>
-                <StyledTableCell align="right">{row.cohort}</StyledTableCell>
+                <StyledTableCell align="right">{students.coe_status}</StyledTableCell>
+                <StyledTableCell align="right">{formatGradDate(students.graduation)}</StyledTableCell>
+                <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
+                <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                 <StyledTableCell align="right">
-                    <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
+                    <Button component={Link} to='/student' style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

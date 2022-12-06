@@ -1,3 +1,6 @@
+// Component for the Program type i.e(FSE,UX) and Payment Type(income share v.s vet tech)
+
+// MUI components 
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -11,7 +14,7 @@ import  InputLabel  from '@mui/material/InputLabel';
 function Program(){
     return(
         <>
-        <Box component='form' display='flex' justifyContent='right'>
+        <Box component='form' display='flex' justifyContent='center'>
             <FormControl variant='outlined' className="formcontrol"  sx={{width: 500, margin:'16px'}}>
             <InputLabel id='search_label' placeholder='search'></InputLabel>
             <TextField labelId='search_label' />

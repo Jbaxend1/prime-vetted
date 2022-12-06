@@ -84,7 +84,7 @@ function App() {
             exact
             path="/about"
           >
-            <AboutPage />
+            <RegisterPage />
           </Route>
 
 

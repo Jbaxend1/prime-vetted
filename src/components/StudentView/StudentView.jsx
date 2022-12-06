@@ -34,6 +34,11 @@ const [coe, setCoe ] = React.useState('');
 const [me, setMe ] = React.useState('');
 
 
+useEffect(() => {
+console.log('use effect active');
+
+}, [] );
+
 
  //get post put deletes here 
 
