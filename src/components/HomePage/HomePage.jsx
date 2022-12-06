@@ -47,11 +47,15 @@ function HomePage() {
     const dispatch = useDispatch();
     
     // uses reducer and saga to get DB information
-    const allStudents = useSelector(store => store.student);
+    const allStudents = useSelector(store => store.student.student);
     const fetchStudents = () => {
         dispatch({type: 'FETCH_ALL_STUDENTS'});
-  
+        
     } 
+
+    // const displayStudent = (studentToDisplay) =>{
+    //     history.push(`/student/${studentToDisplay.id}`)
+    // }
     
     useEffect(() => {
         fetchStudents();
@@ -68,7 +72,8 @@ function HomePage() {
 
     return (
         <>  
-        <Program/>
+        {/* Program helps filter students (stretch goal) */}
+        {/* <Program/> */}
         <br/>
     <Box display='flex' justifyContent='center'>
       <TableContainer sx={{width:'850px'}} elevation={8} component={Card}>
