@@ -56,7 +56,7 @@ import { ReactComponent as Logo } from './logo-prime-horizontal.svg';
           </ListItem>
 
           <ListItem >
-          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>Reports</Button>
+          <Button style={{color:'grey', borderColor:'GrayText'}} variant='outlined' onClick={() => history.push('/reports')}>Reports</Button>
           </ListItem>
 
           <ListItem>
