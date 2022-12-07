@@ -35,7 +35,6 @@ const [me, setMe ] = React.useState('');
 
 
 
-
 // update for note 
 const updateNote= (event) => {
     console.log('in the update note function')
