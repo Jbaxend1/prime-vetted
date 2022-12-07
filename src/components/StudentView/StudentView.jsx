@@ -38,6 +38,7 @@ useEffect(() => {
     //   setFirstName(store.first_name);
     //   setLastName(store.last_name);
     //   setComment(store.comment);
+    //
     }
 
 }, [id])
@@ -100,11 +101,12 @@ alt="placeholder icon"/>
             {/* here will change depending on student status */}
             <Box sx={{minWidth: 220}}>
                 <FormControl fullWidth >
-                    <InputLabel>COE status</InputLabel>
+                    <InputLabel>{store.coe_status}</InputLabel>
                     <Select
                     id='select-coe-status'
                     value={store.coe_status}
                     label="coe"
+        
                     >
                     {/* menus items still need values */}
                         <MenuItem>Requested</MenuItem>
@@ -117,7 +119,7 @@ alt="placeholder icon"/>
             <br/>
             <Box sx={{minWidth: 220}}>
                 <FormControl fullWidth >
-                    <InputLabel>ME Status </InputLabel>
+                    <InputLabel> {store.me_form_status}</InputLabel>
                     <Select
                     id='select-coe-status'
                     value={store.me_form_status}

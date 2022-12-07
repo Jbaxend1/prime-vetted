@@ -1,9 +1,6 @@
 // // in this page the admin on click will be able to the reports the can give quick 
 // // data in regards  to student placement post grad 
-
 // // mui imports 
-
-
     import React from 'react';
     import {
         Card,
@@ -38,7 +35,7 @@
         };
     
         const chartData = {};
-        
+
     
         const studentList = cohort.students;
         if (studentList) {
