@@ -15,7 +15,7 @@ function* fetchAllStudents() {
 // Vet Tec Filter
 function* fetchVet() {
     try {
-        const vetResponse = yield axios.get('/api/vet-tech');
+        const vetResponse = yield axios.get('/api/student/vet-tec');
         yield put({ type: 'SET_LIST', payload: vetResponse.data });
     } catch (e) {
         console.log(e);
@@ -26,7 +26,8 @@ function* fetchVet() {
 // ISA Filter
 function* fetchIsa() {
     try {
-        const isaResponse = yield axios.get('/api/isa');
+        const isaResponse = yield axios.get('/api/student/filter/isa');
+        console.log(isaResponse.data);
         yield put({ type: 'SET_LIST', payload: isaResponse.data });
     } catch (e) {
         console.log(e);
