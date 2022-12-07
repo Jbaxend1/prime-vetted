@@ -31,6 +31,7 @@ import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import './App.css';
+import Reports from '../Reports/Reports';
 
 const drawerWidth = 200;
 
@@ -95,6 +96,15 @@ function App() {
             path="/student"
           >
             <StudentView />
+          </Route>
+
+
+          <Route
+            // shows the student page
+            exact
+            path="/reports"
+          >
+            <Reports/>
           </Route>
 
 
