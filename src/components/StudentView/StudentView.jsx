@@ -24,11 +24,11 @@ const store = useSelector(store => store.student.studentDetail);
 const history = useHistory();
 const {id} = useParams();
 // this is for the drop down to change the COE/MEstatus
-const [coe, setCoe ] = React.useState('');
-const [me, setMe ] = React.useState('');
-const[firstName, setFirstName] = React.useState('');
-const [comment, setComment] = React.useState('');
-const [lastName, setLastName] = React.useState('');
+// const [coe, setCoe ] = React.useState('');
+// const [me, setMe ] = React.useState('');
+// const[firstName, setFirstName] = React.useState('');
+// const [comment, setComment] = React.useState('');
+// const [lastName, setLastName] = React.useState('');
 
 useEffect(() => {
     if (id) {
@@ -94,8 +94,7 @@ src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-ve
 alt="placeholder icon"/>
     <Card>
         <CardContent>
-            {/* this eventually will be replaced by the student name of on view click */}
-            {JSON.stringify(store)}
+            {/* {JSON.stringify(store)} */}
             <Typography variant='h4'> {store.first_name} {store.last_name}
             </Typography> <br />
             {/* here will change depending on student status */}
@@ -104,10 +103,8 @@ alt="placeholder icon"/>
                     <InputLabel>COE status</InputLabel>
                     <Select
                     id='select-coe-status'
-                    value={coe}
+                    value={store.coe_status}
                     label="coe"
-                    //implement functionality later
-                    // onChange={handlechange}
                     >
                     {/* menus items still need values */}
                         <MenuItem>Requested</MenuItem>
@@ -123,12 +120,9 @@ alt="placeholder icon"/>
                     <InputLabel>ME Status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    value={coe}
+                    value={store.me_form_status}
                     label="coe"
-                    //implement functionality later
-                    // onChange={handlechange}
                     >
-                    {/* menus items still need values */}
                         <MenuItem> Placed </MenuItem>
                         <MenuItem> Unplaced </MenuItem>
                        
