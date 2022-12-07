@@ -67,7 +67,7 @@ function App() {
         >
           <Toolbar >
             <Typography variant="h4" noWrap component="div" >
-              Vetted
+              Vetted 
               {/* implement later */}
               {/* <Button variant='outlined'>Refresh</Button> */}
             </Typography>
@@ -119,7 +119,10 @@ function App() {
           </ProtectedRoute>
 
 
-          <ProtectedRoute>
+          <ProtectedRoute
+          exact
+          path='/home'
+          >
             <HomePage/>
           </ProtectedRoute>
 
@@ -152,19 +155,7 @@ function App() {
             }
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/home" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            }
-          </Route>
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

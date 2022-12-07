@@ -51,7 +51,7 @@ function HomePage() {
     const fetchStudents = () => {
         dispatch({type: 'FETCH_ALL_STUDENTS'});
         
-    } 
+    }
 
     // const displayStudent = (studentToDisplay) =>{
     //     history.push(`/student/${studentToDisplay.id}`)
