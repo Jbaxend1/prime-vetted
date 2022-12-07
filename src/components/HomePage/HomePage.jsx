@@ -3,7 +3,7 @@ import Program from '../Program/Program';
 import './HomePage.css'
 // react imports
 import {useState, useEffect} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // axios import
 import axios from 'axios';
@@ -18,6 +18,7 @@ import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import  Box from '@mui/material/Box';
 import Button  from '@mui/material/Button';
+import { display } from '@mui/system';
 
 // Styled theme for  student Table
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -45,17 +46,19 @@ function HomePage() {
  
     const history = useHistory();
     const dispatch = useDispatch();
+    const { studentId } = useParams();
     
     // uses reducer and saga to get DB information
     const allStudents = useSelector(store => store.student.student);
+    // const singleStudent = useSelector(store => store.store.studentDetail)
     const fetchStudents = () => {
         dispatch({type: 'FETCH_ALL_STUDENTS'});
         
     }
 
-    // const displayStudent = (studentToDisplay) =>{
-    //     history.push(`/student/${studentToDisplay.id}`)
-    // }
+    const displayStudent = (studentToDisplay) =>{
+        history.push(`/student/${studentToDisplay.id}`)
+    }
     
     useEffect(() => {
         fetchStudents();
@@ -91,7 +94,7 @@ function HomePage() {
           <TableBody>
             {/* rows.map will be changed to reflect DB information */}
             {allStudents.map((students) => (
-              <StyledTableRow key={students.name}>
+              <StyledTableRow key={students.id}>
                 <StyledTableCell component="th" scope="allStudents">
                   {students.first_name} {students.last_name}
                 </StyledTableCell>
@@ -100,7 +103,7 @@ function HomePage() {
                 <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
                 <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                 <StyledTableCell align="right">
-                    <Button component={Link} to={`/student/`} style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
+                    <Button onClick={(event) => displayStudent(students)} style={{color:'grey', borderColor:'GrayText'}} variant='outlined'>View</Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

@@ -85,7 +85,7 @@ function App() {
             exact
             path="/about"
           >
-            <RegisterPage />
+            <AboutPage />
           </Route>
 
 
@@ -93,7 +93,7 @@ function App() {
           <Route
             // shows the student page
             exact
-            path="/student"
+            path="/student/:id"
           >
             <StudentView />
           </Route>
