@@ -17,13 +17,31 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
+
 function StudentView() {
 const dispatch = useDispatch();
-const store = useSelector(store => store);
+const store = useSelector(store => store.student.studentDetail);
 const history = useHistory();
+const {id} = useParams();
 // this is for the drop down to change the COE/MEstatus
 const [coe, setCoe ] = React.useState('');
 const [me, setMe ] = React.useState('');
+const[firstName, setFirstName] = React.useState('');
+const [comment, setComment] = React.useState('');
+const [lastName, setLastName] = React.useState('');
+
+useEffect(() => {
+    if (id) {
+      dispatch({type:'FETCH_DETAILS', payload: id});
+    //   setCoe(store.coe_status);
+    //   setMe(store.me_form_status);
+    //   setFirstName(store.first_name);
+    //   setLastName(store.last_name);
+    //   setComment(store.comment);
+    }
+
+}, [id])
+
 
 // will handle the changes for the COE and ME status
 // consult group if this can handle both the coe and the me in one function 
@@ -31,12 +49,8 @@ const [me, setMe ] = React.useState('');
 //     console.log('changed the COE status', );
 // })
 
-
-
-
-
 // update for note 
-const updateNote= (event) => {
+const updateNote = (event) => {
     console.log('in the update note function')
     axios.put(`/api/student/${note.id}}`, 
     { 
@@ -81,7 +95,9 @@ alt="placeholder icon"/>
     <Card>
         <CardContent>
             {/* this eventually will be replaced by the student name of on view click */}
-            <Typography variant='h4'> Holly May</Typography> <br />
+            {JSON.stringify(store)}
+            <Typography variant='h4'> {store.first_name} {store.last_name}
+            </Typography> <br />
             {/* here will change depending on student status */}
             <Box sx={{minWidth: 220}}>
                 <FormControl fullWidth >

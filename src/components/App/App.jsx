@@ -100,7 +100,7 @@ function App() {
 
 
           <Route
-            // shows the student page
+
             exact
             path="/reports"
           >
