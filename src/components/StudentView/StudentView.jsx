@@ -24,8 +24,8 @@ const store = useSelector(store => store.student.studentDetail);
 const history = useHistory();
 const {id} = useParams();
 // this is for the drop down to change the COE/MEstatus
-// const [coe, setCoe ] = React.useState('');
-// const [me, setMe ] = React.useState('');
+const [coe, setCoe ] = React.useState(`${store.coe_status}`);
+const [me, setMe ] = React.useState(`${store.me_form_status}`);
 // const[firstName, setFirstName] = React.useState('');
 // const [comment, setComment] = React.useState('');
 // const [lastName, setLastName] = React.useState('');
@@ -45,10 +45,11 @@ useEffect(() => {
 
 
 // will handle the changes for the COE and ME status
-// consult group if this can handle both the coe and the me in one function 
-// handleChange(() =>{
-//     console.log('changed the COE status', );
-// })
+const handleChange = (event) => {
+    console.log('changed the COE status', (event.target.value));
+    setCoe(event.target.value);
+    setMe(event.target.value);
+};
 
 // update for note 
 const updateNote = (event) => {
@@ -65,23 +66,6 @@ const updateNote = (event) => {
         });
   };
 
-
-
-//delete
-//new function to delete a
-const deleteNote = () => {
-    axios({
-      method: 'DELETE',
-    //ask what the url should be
-    //   url: `/api/student/delete/${note.id}`
-    }).then((response) => {
-      alert(`your note/comment was properly deleted`);
-    }).catch((error) => {
-      console.log(error);
-      alert('Something went wrong!')
-    })
-  }
-
 return(
 <div className="studentContainer">
     {/* insert container here */}
@@ -95,38 +79,39 @@ src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-ve
 alt="placeholder icon"/>
     <Card>
         <CardContent>
-            {/* {JSON.stringify(store)} */}
+          {JSON.stringify(store.coe_status)}
             <Typography variant='h4'> {store.first_name} {store.last_name}
             </Typography> <br />
-            {/* here will change depending on student status */}
             <Box sx={{minWidth: 220}}>
-                <FormControl fullWidth >
-                    <InputLabel>{store.coe_status}</InputLabel>
+                <FormControl variant="filled" fullWidth >
+                    <InputLabel> COE Status </InputLabel>
                     <Select
                     id='select-coe-status'
                     value={store.coe_status}
                     label="coe"
-        
+                    onChange={handleChange}
+                    placeholder={coe}
                     >
-                    {/* menus items still need values */}
-                        <MenuItem>Requested</MenuItem>
-                        <MenuItem>Received</MenuItem>
-                        <MenuItem>Completed</MenuItem>
+                        <MenuItem value={'Requested'}> Requested</MenuItem>
+                        <MenuItem value={'Received'}> Received</MenuItem>
+                        <MenuItem value={'Sent'}> Sent </MenuItem>
 
                     </Select>
                 </FormControl>
             </Box>
             <br/>
             <Box sx={{minWidth: 220}}>
-                <FormControl fullWidth >
-                    <InputLabel> {store.me_form_status}</InputLabel>
+                <FormControl variant="filled" fullWidth >
+                    <InputLabel> ME status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    value={store.me_form_status}
-                    label="coe"
+                    defaultValue={store.me_form_status}
+                    label="me"
                     >
-                        <MenuItem> Placed </MenuItem>
-                        <MenuItem> Unplaced </MenuItem>
+                        <MenuItem value={'Paid'}> Paid </MenuItem>
+                        <MenuItem value={'Received'}> Received </MenuItem>
+                        <MenuItem value={'Requested'}> Requested </MenuItem>
+                        <MenuItem value={'Submitted'}> Submitted to VA </MenuItem>
                        
                     </Select>
                 </FormControl>
@@ -137,7 +122,7 @@ alt="placeholder icon"/>
                 label="Notes"
                 multiline
                 rows={4}
-                defaultValue="Notes here"
+                defaultValue={store.comment}
                 />
                 <br />
                 <br/>
@@ -145,13 +130,13 @@ alt="placeholder icon"/>
             <Button style={{color:'grey', borderColor:'GrayText'}} 
             variant='outlined'
             onClick={() => updateNote()}>
-                Save
+                Save Note
                 </Button> 
             {/* button to delete comment */}
             <Button style={{color:'red', borderColor:'GrayText'}} 
             variant='outlined' 
             onClick={() => deleteNote()}>
-                Delete
+                Delete Note
                 </Button>
         </CardContent>
 
