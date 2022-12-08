@@ -24,8 +24,8 @@ const store = useSelector(store => store.student.studentDetail);
 const history = useHistory();
 const {id} = useParams();
 // this is for the drop down to change the COE/MEstatus
-// const [coe, setCoe ] = React.useState('');
-// const [me, setMe ] = React.useState('');
+const [coe, setCoe ] = React.useState('');
+const [me, setMe ] = React.useState('');
 // const[firstName, setFirstName] = React.useState('');
 // const [comment, setComment] = React.useState('');
 // const [lastName, setLastName] = React.useState('');
@@ -46,9 +46,11 @@ useEffect(() => {
 
 // will handle the changes for the COE and ME status
 // consult group if this can handle both the coe and the me in one function 
-// handleChange(() =>{
-//     console.log('changed the COE status', );
-// })
+const handleChange = (event) => {
+    console.log('changed the COE status',);
+    setCoe(event.target.value);
+    setMe(event.target.value);
+};
 
 // update for note 
 const updateNote = (event) => {
@@ -100,33 +102,33 @@ alt="placeholder icon"/>
             </Typography> <br />
             {/* here will change depending on student status */}
             <Box sx={{minWidth: 220}}>
-                <FormControl fullWidth >
-                    <InputLabel>{store.coe_status}</InputLabel>
+                <FormControl variant="filled" fullWidth >
+                    <InputLabel> COE Status</InputLabel>
                     <Select
                     id='select-coe-status'
                     value={store.coe_status}
                     label="coe"
-        
+                    onChange={handleChange}
                     >
                     {/* menus items still need values */}
-                        <MenuItem>Requested</MenuItem>
-                        <MenuItem>Received</MenuItem>
-                        <MenuItem>Completed</MenuItem>
+                        <MenuItem value={'requested'}>Requested</MenuItem>
+                        <MenuItem value={'received'}>Received</MenuItem>
+                        <MenuItem value={'completed'}>Completed</MenuItem>
 
                     </Select>
                 </FormControl>
             </Box>
             <br/>
             <Box sx={{minWidth: 220}}>
-                <FormControl fullWidth >
-                    <InputLabel> {store.me_form_status}</InputLabel>
+                <FormControl variant="filled" fullWidth >
+                    <InputLabel> ME status </InputLabel>
                     <Select
                     id='select-coe-status'
                     value={store.me_form_status}
-                    label="coe"
+                    label="me"
                     >
-                        <MenuItem> Placed </MenuItem>
-                        <MenuItem> Unplaced </MenuItem>
+                        <MenuItem value={'placed'}> Placed </MenuItem>
+                        <MenuItem value={'unplaced'}> Unplaced </MenuItem>
                        
                     </Select>
                 </FormControl>
