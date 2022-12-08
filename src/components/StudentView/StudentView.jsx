@@ -32,9 +32,9 @@ const [me, setMe ] = React.useState(`${store.me_form_status}`);
 
 useEffect(() => {
     if (id) {
-      dispatch({type:'FETCH_DETAILS', payload: id});
-    //   setCoe(store.coe_status);
-    //   setMe(store.me_form_status);
+    dispatch({type:'FETCH_DETAILS', payload: id});
+    setCoe(store.coe_status);
+    setMe(store.me_form_status);
     //   setFirstName(store.first_name);
     //   setLastName(store.last_name);
     //   setComment(store.comment);
