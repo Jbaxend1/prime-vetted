@@ -10,6 +10,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PieChart() {
     const allStudents = useSelector(store => store.student.student);
+    console.log(allStudents);
     const dispatch = useDispatch();
     const fetchStudents = () => {
     
@@ -24,8 +25,9 @@ function PieChart() {
     labels: ['ISA', 'Vet Tech'],
     datasets: [
       {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'ISA',
+        data: [allStudents.filter(student => student.payment_type === 'ISA').length,
+               allStudents.filter(student => student.payment_type === 'Vet Tech').length],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
