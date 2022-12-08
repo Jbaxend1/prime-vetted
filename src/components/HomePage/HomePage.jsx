@@ -2,8 +2,8 @@
 import Program from '../Program/Program';
 import './HomePage.css'
 // react imports
-import { useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import {  useEffect } from 'react';
+import { Link, useHistory,} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // axios import
 import axios from 'axios';
@@ -18,8 +18,6 @@ import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { display } from '@mui/system';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 // Styled theme for  student Table
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -47,20 +45,16 @@ function HomePage() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { studentId } = useParams();
-  const [category, setCategory] = useState('ALL');
+ 
+ 
 
   // uses reducer and saga to get DB information
   const allStudents = useSelector(store => store.student.student);
   // const singleStudent = useSelector(store => store.store.studentDetail)
   const fetchStudents = () => {
-    if(category === 'ALL') {
+   
       dispatch({ type: 'FETCH_ALL_STUDENTS' });
-    } else if(category === 'ISA') {
-      dispatch({ type: 'FETCH_ISA'});
-    } else if(category === 'VET') {
-      dispatch({ type: 'FETCH_VET_TEC'});
-    };
+   
   }
 
   const displayStudent = (studentToDisplay) => {
@@ -77,32 +71,14 @@ function HomePage() {
     return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
   }
 
-const handleChange = (e) => {
-  setCategory(e.target.value);
-  fetchStudents();
-  
-};
+
 
 
   return (
     <>
       {/* Program helps filter students (stretch goal) */}
-      {/* <Program/> */}
+      <Program/>
       <br />
-      <h2>{category}</h2>
-      <FormControl size='small' sx={{ minWidth: 200 }}>
-        <InputLabel id='category'>Category</InputLabel>
-        <Select onChange={handleChange} size='small'
-          labelId='category'
-          label='Category'
-          value={category}
-        >
-          <MenuItem value='ALL'>ALL</MenuItem>
-          <MenuItem value="ISA">ISA</MenuItem>
-          <MenuItem value="VET">VET TEC</MenuItem>
-        </Select>
-      </FormControl>
-      <Button onClick={(e) => fetchStudents()}>Filter</Button>
 
       <Box display='flex' justifyContent='center'>
         <TableContainer sx={{ width: '850px' }} elevation={8} component={Card}>
