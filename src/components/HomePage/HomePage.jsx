@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // axios import
 import axios from 'axios';
 // MUI components for Students table 
+import Chip from '@mui/material/Chip';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -88,6 +89,7 @@ function HomePage() {
                 <StyledTableCell>Name</StyledTableCell>
                 <StyledTableCell align="right">COE Status</StyledTableCell>
                 <StyledTableCell align="right">Gradutation Date</StyledTableCell>
+                <StyledTableCell align="right">Status</StyledTableCell>
                 <StyledTableCell align="right">M.E Form Status</StyledTableCell>
                 <StyledTableCell align="right">Cohort</StyledTableCell>
                 <StyledTableCell align="right">Action</StyledTableCell>
@@ -102,6 +104,9 @@ function HomePage() {
                   </StyledTableCell>
                   <StyledTableCell align="right">{students.coe_status}</StyledTableCell>
                   <StyledTableCell align="right">{formatGradDate(students.graduation)}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {students.placed_at  ? <Chip label="Placed"color="success" /> : <Chip label="Unplaced" />}
+                  </StyledTableCell>
                   <StyledTableCell align="right">{students.me_form_status}</StyledTableCell>
                   <StyledTableCell align="right">{students.cohort_name}</StyledTableCell>
                   <StyledTableCell align="right">
