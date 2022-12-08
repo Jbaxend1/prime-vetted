@@ -61,7 +61,7 @@ const handleChange = (event) => {
     {
         coe: newCoe,
         me: newMe,
-        
+
     }).then(() => {
         dispatch({ type: 'SET_DETAILS' });
         setCoe(event.target.value);
@@ -110,7 +110,7 @@ alt="placeholder icon"/>
                     <InputLabel> COE Status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    value={store.coe_status}
+                    defaultValue={store.coe_status}
                     label="coe"
                     onChange={handleChange}
                     placeholder={coe}
@@ -130,17 +130,19 @@ alt="placeholder icon"/>
                     <InputLabel> ME status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    value={store.me_form_status}
+                    defaultValue={store.me_form_status}
                     label="me"
+                    placeholder={me}
                     >
                         <MenuItem value={'Paid'}> Paid </MenuItem>
                         <MenuItem value={'Received'}> Received </MenuItem>
                         <MenuItem value={'Requested'}> Requested </MenuItem>
                         <MenuItem value={'Submitted'}> Submitted to VA </MenuItem>
-                       
                     </Select>
                 </FormControl>
             </Box>
+
+        {/* //comment section for individual student */}
             <br />
             <TextField
                 id="outlined-multiline-static"
@@ -151,6 +153,7 @@ alt="placeholder icon"/>
                 />
                 <br />
                 <br/>
+
             {/*  button to save changes */}
             <Button style={{color:'grey', borderColor:'GrayText'}} 
             variant='outlined'
