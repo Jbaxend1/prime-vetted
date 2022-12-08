@@ -26,35 +26,58 @@ const {id} = useParams();
 // this is for the drop down to change the COE/MEstatus
 const [coe, setCoe ] = React.useState(`${store.coe_status}`);
 const [me, setMe ] = React.useState(`${store.me_form_status}`);
-// const[firstName, setFirstName] = React.useState('');
-// const [comment, setComment] = React.useState('');
-// const [lastName, setLastName] = React.useState('');
-
-useEffect(() => {
-    if (id) {
-      dispatch({type:'FETCH_DETAILS', payload: id});
-    //   setCoe(store.coe_status);
-    //   setMe(store.me_form_status);
-    //   setFirstName(store.first_name);
-    //   setLastName(store.last_name);
-    //   setComment(store.comment);
-    //
-    }
-
-}, [id])
-
 
 // will handle the changes for the COE and ME status
+// const handleChange = (event) => {
+//     console.log('changed the COE status', (event.target.value));
+//     setCoe(event.target.value);
+//     setMe(event.target.value);
+// };
+
+// useEffect(() => {
+//     if (id) {
+//     dispatch({type:'FETCH_DETAILS', payload: id});
+//     setCoe(store.coe_status);
+//     setMe(store.me_form_status);
+//     }
+
+// }, [id])
+
+
+const fetchDetails = () => {
+    dispatch({ type: 'FETCH_DETAILS', payload:id });
+ 
+}
+
+useEffect(() => {
+    fetchDetails();
+  }, [id]);
+
+
+
+// this is what will change the coe and me status 
 const handleChange = (event) => {
-    console.log('changed the COE status', (event.target.value));
-    setCoe(event.target.value);
-    setMe(event.target.value);
-};
+    axios.post(`api/student/${id}`, 
+    {
+        coe: newCoe,
+        me: newMe,
+
+    }).then(() => {
+        dispatch({ type: 'SET_DETAILS' });
+        setCoe(event.target.value);
+        setMe(event.target.value);
+    })
+    .catch(error => {
+        console.log('error with element get request', error);
+    });
+    
+}
+
 
 // update for note 
 const updateNote = (event) => {
     console.log('in the update note function')
-    axios.put(`/api/student/${note.id}}`, 
+    axios.put(`/api/student/${student.id}}`, 
     { 
     
     })
@@ -79,7 +102,7 @@ src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-ve
 alt="placeholder icon"/>
     <Card>
         <CardContent>
-          {JSON.stringify(store.coe_status)}
+          {JSON.stringify(store)}
             <Typography variant='h4'> {store.first_name} {store.last_name}
             </Typography> <br />
             <Box sx={{minWidth: 220}}>
@@ -87,7 +110,7 @@ alt="placeholder icon"/>
                     <InputLabel> COE Status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    value={store.coe_status}
+                    defaultValue={store.coe_status}
                     label="coe"
                     onChange={handleChange}
                     placeholder={coe}
@@ -100,6 +123,8 @@ alt="placeholder icon"/>
                 </FormControl>
             </Box>
             <br/>
+
+
             <Box sx={{minWidth: 220}}>
                 <FormControl variant="filled" fullWidth >
                     <InputLabel> ME status </InputLabel>
@@ -107,15 +132,17 @@ alt="placeholder icon"/>
                     id='select-coe-status'
                     defaultValue={store.me_form_status}
                     label="me"
+                    placeholder={me}
                     >
                         <MenuItem value={'Paid'}> Paid </MenuItem>
                         <MenuItem value={'Received'}> Received </MenuItem>
                         <MenuItem value={'Requested'}> Requested </MenuItem>
                         <MenuItem value={'Submitted'}> Submitted to VA </MenuItem>
-                       
                     </Select>
                 </FormControl>
             </Box>
+
+        {/* //comment section for individual student */}
             <br />
             <TextField
                 id="outlined-multiline-static"
@@ -126,6 +153,7 @@ alt="placeholder icon"/>
                 />
                 <br />
                 <br/>
+
             {/*  button to save changes */}
             <Button style={{color:'grey', borderColor:'GrayText'}} 
             variant='outlined'
