@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 router.get('/vet-tec', (req, res) => {
     if (req.isAuthenticated()) {
 
-        const queryText = `SELECT "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "student"."payment_type", "student"."graduation", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "student"
+        const queryText = `SELECT "student"."id","student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "student"."payment_type", "student"."graduation", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "student"
         JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id";`;
 
         pool.query(queryText).then((result) => {
