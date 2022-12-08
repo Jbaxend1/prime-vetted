@@ -89,6 +89,15 @@ const updateNote = (event) => {
         });
   };
 
+  const updateStatus = (event) => {
+    console.log('in update Status');
+    axios.put(`/api/student/${id}`).then(() => {
+        dispatch({ type: 'SET_DETAILS' });
+    }).catch((error) => {
+        console.log('error with button');
+        alert('something went wrong!')
+    })
+  }
 return(
 <div className="studentContainer">
     {/* insert container here */}
@@ -157,7 +166,7 @@ alt="placeholder icon"/>
             {/*  button to save changes */}
             <Button style={{color:'grey', borderColor:'GrayText'}} 
             variant='outlined'
-            onClick={() => updateNote()}>
+            onClick={(event) => updateStatus(id)}>
                 Save Note
                 </Button> 
             {/* button to delete comment */}
