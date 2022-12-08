@@ -113,7 +113,7 @@ alt="placeholder icon"/>
                     {/* menus items still need values */}
                         <MenuItem value={'requested'}>Requested</MenuItem>
                         <MenuItem value={'received'}>Received</MenuItem>
-                        <MenuItem value={'completed'}>Completed</MenuItem>
+                        <MenuItem value={'sent'}>Sent </MenuItem>
 
                     </Select>
                 </FormControl>
@@ -127,8 +127,10 @@ alt="placeholder icon"/>
                     value={store.me_form_status}
                     label="me"
                     >
-                        <MenuItem value={'placed'}> Placed </MenuItem>
-                        <MenuItem value={'unplaced'}> Unplaced </MenuItem>
+                        <MenuItem value={'paid'}> Paid </MenuItem>
+                        <MenuItem value={'received'}> Received </MenuItem>
+                        <MenuItem value={'requested'}> Requested </MenuItem>
+                        <MenuItem value={'submitted'}> Submitted to VA </MenuItem>
                        
                     </Select>
                 </FormControl>
