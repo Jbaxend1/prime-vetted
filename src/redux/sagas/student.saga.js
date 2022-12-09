@@ -36,12 +36,20 @@ function* fetchIsa() {
 }
 
 // Student Details
-function* fetchDetails(action) {
+function* getEditStudent(action) {
     console.log(action.payload);
 
     try {
-        const studentDetail = yield axios.get(`/api/student/${action.payload}`);
-        yield put({ type: 'SET_STUDENT', payload: studentDetail.data });
+        const response = yield axios.get(`/api/student/details/${action.payload}`);
+
+        const inputValues = Object.assign({}, response.data );
+        
+        Object.keys(inputValues).forEach((key) => {
+            if (inputValues[key] === null) {
+                inputValues[key] = '';
+            }
+        })
+        yield put({ type: 'SET_EDIT_STUDENT', payload: inputValues });
     } catch (e) {
         console.log(e);
         alert('Something wrong: student detail saga');
@@ -54,7 +62,7 @@ function* studentSaga() {
     yield takeLatest('FETCH_ALL_STUDENTS', fetchAllStudents);
     yield takeLatest('FETCH_ISA', fetchIsa);
     yield takeLatest('FETCH_VET_TEC', fetchVet);
-    yield takeLatest('FETCH_DETAILS', fetchDetails)
+    yield takeLatest('GET_EDIT_STUDENT', getEditStudent);
 }
 
 export default studentSaga;
