@@ -115,7 +115,7 @@ router.put('/:id', (req, res) => {
         const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3 "me_form_status" = $4
                        WHERE "student_id" = $5;`;
         
-        pool.query(query, [req.body.comment, req.body.coe, req.body.reminder, req.body.me, req.params.id])
+        pool.query(query, [req.body.comment, req.body.coe_status, req.body.last_reminder_sent_at, req.body.me_form_status, req.params.id])
             .then(results => {
                 res.sendStatus(200);
             }).catch( error => {
