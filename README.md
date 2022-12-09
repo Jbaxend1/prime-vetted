@@ -12,9 +12,8 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
-- [Contacts](#contacts)
+
 
 ## Description
 
@@ -51,10 +50,6 @@ What do I need to do or know before attempting to use your project
 5.Once the view button is clicked the user will then be navigated to the individual student's page that the user can then change the COE status and ME status 
 
 
-## License
-
-<a href="https://choosealicense.com/licenses/mit/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/mit.svg" height=40 />MIT License</a>
-
 ## Acknowledgements
 
 Thank you to Prime Digital Academy for giving us the opportunity to create this neat piece of techknowledgy and giving us the tools to build it.
@@ -62,13 +57,9 @@ A very special thank you to all who worked on this project: Jonathon Baxendell, 
 
 ## Contacts
 
-<a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
 
 
 
-
-
-`
 
 ## Debugging
 
