@@ -56,6 +56,14 @@ function* getEditStudent(action) {
     }
 }
 
+function* updateStudent(action) {
+    try {
+        const update = axios.put(`/api/student/edit/${action.payload.id}`, action.payload);
+        yield put({ type: 'SET_EDIT_STUDENT', payload: update.data});
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 // Watcher
 function* studentSaga() {
@@ -63,6 +71,7 @@ function* studentSaga() {
     yield takeLatest('FETCH_ISA', fetchIsa);
     yield takeLatest('FETCH_VET_TEC', fetchVet);
     yield takeLatest('GET_EDIT_STUDENT', getEditStudent);
+    yield takeLatest('UPDATE_STUDENT', updateStudent);
 }
 
 export default studentSaga;

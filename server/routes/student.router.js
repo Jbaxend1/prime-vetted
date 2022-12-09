@@ -109,10 +109,10 @@ router.post('/:id', (req, res) => {
 
 // PUT for Editing Vet-Tech Data
 
-router.put('/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
     if (req.isAuthenticated()) {
 
-        const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3 "me_form_status" = $4
+        const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3, "me_form_status" = $4
                        WHERE "student_id" = $5;`;
         
         pool.query(query, [req.body.comment, req.body.coe_status, req.body.last_reminder_sent_at, req.body.me_form_status, req.params.id])

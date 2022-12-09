@@ -45,6 +45,11 @@ function StudentView() {
         dispatch({ type: 'SET_EDIT_STUDENT', payload: {...editStudent, [key]: e.target.value}});
     }
 
+    const updateStatus = (e, id) => {
+        e.preventDefault();
+        dispatch({ type: 'UPDATE_STUDENT', payload: {...editStudent, id}})
+    }
+
    
 
     return (
@@ -68,7 +73,7 @@ function StudentView() {
                                 <InputLabel> COE Status </InputLabel>
                                 <Select
                                     value={editStudent.coe_status}
-                                    onChange={handleChangeFor('coe')}
+                                    onChange={handleChangeFor('coe_status')}
                                     id='select-coe-status'
                                     label="coe"
                                 >
@@ -89,13 +94,13 @@ function StudentView() {
                                     value={editStudent.me_form_status}
                                     id='select-coe-status'
                                     label="me"
-                                    onChange={handleChangeFor('me')}
+                                    onChange={handleChangeFor('me_form_status')}
                                     
                                 >
-                                    <MenuItem value='Paid'> Paid </MenuItem>
-                                    <MenuItem value='Received'> Received </MenuItem>
-                                    <MenuItem value='Requested'> Requested </MenuItem>
-                                    <MenuItem value='Submitted to VA'> Submitted to VA </MenuItem>
+                                    <MenuItem value={'Paid'}> Paid </MenuItem>
+                                    <MenuItem value={'Received'}> Received </MenuItem>
+                                    <MenuItem value={'Requested'}> Requested </MenuItem>
+                                    <MenuItem value={'Submitted to VA'}> Submitted to VA </MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -116,7 +121,7 @@ function StudentView() {
                         {/*  button to save changes */}
                         <Button style={{ color: 'grey', borderColor: 'GrayText' }}
                             variant='outlined'
-                            onClick={(event) => updateStatus(id)}>
+                            onClick={(e) => updateStatus(e, id)}>
                             Save Note
                         </Button>
                         {/* button to delete comment */}

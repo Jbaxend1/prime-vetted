@@ -10,8 +10,8 @@ const studentList = (state = [], action) => {
 
 
 const defaultStudent = {
-    coe: '',
-    me: '',
+    coe_status: '',
+    me_form_status: '',
     comment: ''
 }
 
