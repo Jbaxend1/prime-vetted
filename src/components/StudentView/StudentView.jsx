@@ -44,6 +44,7 @@ const [me, setMe ] = React.useState(`${store.me_form_status}`);
 // }, [id])
 
 
+//should fetch the student details and display in respective areas
 const fetchDetails = () => {
     dispatch({ type: 'FETCH_DETAILS', payload:id });
  
@@ -79,7 +80,7 @@ const updateNote = (event) => {
     console.log('in the update note function')
     axios.put(`/api/student/${student.id}}`, 
     { 
-    
+        
     })
         .then(() => {
             alert('your post was updated!');
@@ -91,7 +92,6 @@ const updateNote = (event) => {
 
 return(
 <div className="studentContainer">
-    {/* insert container here */}
 <CssBaseline />
 <Container fixed>
 <img
@@ -110,7 +110,7 @@ alt="placeholder icon"/>
                     <InputLabel> COE Status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    defaultValue={store.coe_status}
+                    defaultValue={coe}
                     label="coe"
                     onChange={handleChange}
                     placeholder={coe}
@@ -130,7 +130,7 @@ alt="placeholder icon"/>
                     <InputLabel> ME status </InputLabel>
                     <Select
                     id='select-coe-status'
-                    defaultValue={store.me_form_status}
+                    defaultValue={me}
                     label="me"
                     placeholder={me}
                     >
