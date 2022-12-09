@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 
 function Reports() {
-    const student = useSelector(store => store.student.student);
+    const student = useSelector(store => store.student.studentList);
 
     const [chartData, setChartData] = useState({
         label: student.map((data) => data.payment_type),
