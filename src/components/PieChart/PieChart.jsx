@@ -9,7 +9,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 function PieChart() {
-    const allStudents = useSelector(store => store.student.student);
+    const allStudents = useSelector(store => store.student.studentList);
     console.log(allStudents);
     const dispatch = useDispatch();
     const fetchStudents = () => {

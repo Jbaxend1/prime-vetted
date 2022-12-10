@@ -50,7 +50,7 @@ function HomePage() {
  
 
   // uses reducer and saga to get DB information
-  const allStudents = useSelector(store => store.student.student);
+  const allStudents = useSelector(store => store.student.studentList);
   // const singleStudent = useSelector(store => store.store.studentDetail)
   const fetchStudents = () => {
    

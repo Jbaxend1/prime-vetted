@@ -46,7 +46,7 @@ router.get('/vet-tec', (req, res) => {
 
 // GET Student details by id
 
-router.get('/:id', (req, res) => {
+router.get('/details/:id', (req, res) => {
     if (req.isAuthenticated()) {
         const query = `SELECT "student"."profile_photo", "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."me_form_status", "vet_tech"."coe_status", "vet_tech"."comment", "vet_tech"."last_reminder_sent_at" FROM "student"
         JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id"
@@ -109,10 +109,10 @@ router.post('/:id', (req, res) => {
 
 // PUT for Editing Vet-Tech Data
 
-router.put('/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
     if (req.isAuthenticated()) {
 
-        const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3 "me_form_status" = $4
+        const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3, "me_form_status" = $4
                        WHERE "student_id" = $5;`;
         
         pool.query(query, [req.body.comment, req.body.coe_status, req.body.last_reminder_sent_at, req.body.me_form_status, req.params.id])
