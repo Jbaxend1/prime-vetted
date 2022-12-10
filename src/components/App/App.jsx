@@ -67,7 +67,14 @@ function App() {
           sx={{   bgcolor: '#00acb0', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
         >
           <Toolbar >
-            <Typography variant="h4" noWrap component="div" >
+            <Typography style={{textShadow: "4px 2px black",
+                                fontWeight:" bolder",
+                                fontSize:"3.1rem" }} 
+                                className='vetted' 
+                                variant="h4" 
+                                noWrap 
+                                component="div" 
+                              >
               Vetted 
               {/* implement later */}
               {/* <Button variant='outlined'>Refresh</Button> */}
