@@ -40,7 +40,7 @@ function StudentView() {
     }, [id]);
 
     // Dialog handlers
-    const [toggle, setToggle] = useState(false);
+    const [open, setOpen] = useState(false);
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
       });
@@ -57,12 +57,12 @@ function StudentView() {
     const updateStatus = (e, id) => {
         e.preventDefault();
         dispatch({ type: 'UPDATE_STUDENT', payload: { ...editStudent, id } });
-        setToggle(true);
     }
 
-    const handleClose = () => {
-        setToggle(false);
-    }
+    // const handleClose = () => {
+    //     setOpen(false);
+    //     // fetchDetails();
+    // }
 
     return (
         <div className="studentContainer">
@@ -150,8 +150,8 @@ function StudentView() {
 
             </Container>
 
-            <Dialog
-                open={toggle}
+            {/* <Dialog
+                open={open}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={handleClose}
@@ -166,7 +166,7 @@ function StudentView() {
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
 
         </div>
     )
