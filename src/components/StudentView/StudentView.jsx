@@ -122,13 +122,13 @@ function StudentView() {
                         <Button style={{ color: 'grey', borderColor: 'GrayText' }}
                             variant='outlined'
                             onClick={(e) => updateStatus(e, id)}>
-                            Save Note
+                            Update Form
                         </Button>
                         {/* button to delete comment */}
                         <Button style={{ color: 'red', borderColor: 'GrayText' }}
                             variant='outlined'
                             onClick={() => deleteNote()}>
-                            Delete Note
+                            Clear Notes
                         </Button>
                     </CardContent>
 
