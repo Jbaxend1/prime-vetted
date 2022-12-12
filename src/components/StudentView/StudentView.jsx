@@ -41,9 +41,9 @@ function StudentView() {
 
     // Dialog handlers
     const [open, setOpen] = useState(false);
-    const Transition = React.forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props} />;
-      });
+    // const Transition = React.forwardRef(function Transition(props, ref) {
+    //     return <Slide direction="up" unmountOnExit ref={ref} {...props} />;
+    //   });
 
     //Funcitons
     const fetchDetails = () => {
@@ -57,12 +57,15 @@ function StudentView() {
     const updateStatus = (e, id) => {
         e.preventDefault();
         dispatch({ type: 'UPDATE_STUDENT', payload: { ...editStudent, id } });
+        setOpen(true);
     }
 
-    // const handleClose = () => {
-    //     setOpen(false);
-    //     // fetchDetails();
-    // }
+    const handleClose = () => {
+        setOpen(false);
+    }
+
+
+
 
     return (
         <div className="studentContainer">
@@ -76,7 +79,7 @@ function StudentView() {
                     alt="placeholder icon" />
                 <Card>
                     <CardContent>
-                        {JSON.stringify(editStudent)}
+                        {/* {JSON.stringify(editStudent)} */}
                         <Typography variant='h4'>
                             {editStudent.first_name} {editStudent.last_name}
                         </Typography> <br />
@@ -134,13 +137,13 @@ function StudentView() {
                         <Button style={{ color: 'grey', borderColor: 'GrayText' }}
                             variant='outlined'
                             onClick={(e) => updateStatus(e, id)}>
-                            Save Note
+                            Update Form
                         </Button>
                         {/* button to delete comment */}
                         <Button style={{ color: 'red', borderColor: 'GrayText' }}
                             variant='outlined'
                             onClick={() => deleteNote()}>
-                            Delete Note
+                            Clear Notes
                         </Button>
                     </CardContent>
 
@@ -150,10 +153,8 @@ function StudentView() {
 
             </Container>
 
-            {/* <Dialog
+            <Dialog
                 open={open}
-                TransitionComponent={Transition}
-                keepMounted
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
             >
@@ -166,7 +167,7 @@ function StudentView() {
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
                 </DialogActions>
-            </Dialog> */}
+            </Dialog>
 
         </div>
     )

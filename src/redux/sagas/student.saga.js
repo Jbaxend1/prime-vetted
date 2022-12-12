@@ -58,8 +58,8 @@ function* getEditStudent(action) {
 
 function* updateStudent(action) {
     try {
-        const update = axios.put(`/api/student/edit/${action.payload.id}`, action.payload);
-        yield put({ type: 'SET_EDIT_STUDENT', payload: update.data});
+        yield axios.put(`/api/student/edit/${action.payload.id}`, action.payload);
+        yield put({ type: 'GET_EDIT_STUDENT', payload: action.payload.id });
     } catch (e) {
         console.log(e);
     }
