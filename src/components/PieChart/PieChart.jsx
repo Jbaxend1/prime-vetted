@@ -54,8 +54,8 @@ function PieChart() {
     datasets: [
       {
         label: 'Placement',
-        data: [allStudents.filter(student => student.placed_at === null).length,
-               allStudents.filter(student => student.placed_at !== null).length],
+        data: [allStudents.filter(student => student.placed_at === null && student.payment_type === "Vet Tech").length,
+               allStudents.filter(student => student.placed_at !== null && student.payment_type === "Vet Tech").length],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
