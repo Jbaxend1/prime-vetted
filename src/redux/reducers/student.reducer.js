@@ -12,14 +12,15 @@ const studentList = (state = [], action) => {
 const defaultStudent = {
     coe_status: '',
     me_form_status: '',
-    comment: ''
+    comment: '',
+    last_reminder_sent_at: ''
 }
 
 const editStudent = (state = defaultStudent, action) => {
     if (action.type === 'SET_EDIT_STUDENT') {
         return action.payload;
     } else if (action.type === 'CLEAR') {
-        return defaultStudent;
+        return state;
     }
 
     return state;
