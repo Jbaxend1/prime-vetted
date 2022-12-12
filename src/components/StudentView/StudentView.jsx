@@ -16,41 +16,53 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+// Dialog imports //
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 
 function StudentView() {
-
-    const dispatch = useDispatch();
-
+    //Redux Stores
     const store = useSelector(store => store.student.studentDetail);
     const editStudent = useSelector(store => store.student.editStudent);
-
+    
+    //Utilities
     const history = useHistory();
     const { id } = useParams();
+    const dispatch = useDispatch();
     
     useEffect(() => {
         fetchDetails();
     }, [id]);
 
+    // Dialog handlers
+    const [toggle, setToggle] = useState(false);
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+      });
 
-    // const [coe, setCoe] = useState(`${store.coe_status}`);
-    // const [me, setMe] = useState(`${store.me_form_status}`);
-
-
+    //Funcitons
     const fetchDetails = () => {
         dispatch({ type: 'GET_EDIT_STUDENT', payload: id });
     }
 
     const handleChangeFor = (key) => (e) => {
-        dispatch({ type: 'SET_EDIT_STUDENT', payload: {...editStudent, [key]: e.target.value}});
+        dispatch({ type: 'SET_EDIT_STUDENT', payload: { ...editStudent, [key]: e.target.value } });
     }
 
     const updateStatus = (e, id) => {
         e.preventDefault();
-        dispatch({ type: 'UPDATE_STUDENT', payload: {...editStudent, id}})
+        dispatch({ type: 'UPDATE_STUDENT', payload: { ...editStudent, id } });
+        setToggle(true);
     }
 
-   
+    const handleClose = () => {
+        setToggle(false);
+    }
 
     return (
         <div className="studentContainer">
@@ -95,7 +107,7 @@ function StudentView() {
                                     id='select-coe-status'
                                     label="me"
                                     onChange={handleChangeFor('me_form_status')}
-                                    
+
                                 >
                                     <MenuItem value={'Paid'}> Paid </MenuItem>
                                     <MenuItem value={'Received'}> Received </MenuItem>
@@ -137,6 +149,24 @@ function StudentView() {
 
 
             </Container>
+
+            <Dialog
+                open={toggle}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle>{"Update Successful!"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        Update Comfirmed
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                </DialogActions>
+            </Dialog>
 
         </div>
     )
