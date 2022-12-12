@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   console.log('student GET route');
 
   if (req.isAuthenticated()) {
-    const queryText = `SELECT "student"."first_name", "student"."id", "student"."last_name", "student"."cohort_name","student"."graduation", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "vet_tech"
+    const queryText = `SELECT "student"."payment_type", "student"."first_name", "student"."id", "student"."last_name", "student"."cohort_name","student"."graduation", "student"."placed_at", "vet_tech"."coe_status", "vet_tech"."me_form_status" FROM "vet_tech"
     FULL OUTER JOIN "student" ON "vet_tech"."student_id" = "student"."id";`;
     pool.query(queryText).then((result) => {
       res.send(result.rows);
@@ -46,7 +46,7 @@ router.get('/vet-tec', (req, res) => {
 
 // GET Student details by id
 
-router.get('/:id', (req, res) => {
+router.get('/details/:id', (req, res) => {
     if (req.isAuthenticated()) {
         const query = `SELECT "student"."profile_photo", "student"."first_name", "student"."last_name", "student"."cohort_name", "student"."placed_at", "vet_tech"."me_form_status", "vet_tech"."coe_status", "vet_tech"."comment", "vet_tech"."last_reminder_sent_at" FROM "student"
         JOIN "vet_tech" ON "student"."id" = "vet_tech"."student_id"
@@ -109,13 +109,13 @@ router.post('/:id', (req, res) => {
 
 // PUT for Editing Vet-Tech Data
 
-router.put('/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
     if (req.isAuthenticated()) {
 
-        const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3 "me_form_status" = $4
+        const query = `UPDATE "vet_tech" SET "comment" = $1, "coe_status" = $2, "last_reminder_sent_at" = $3, "me_form_status" = $4
                        WHERE "student_id" = $5;`;
         
-        pool.query(query, [req.body.comment, req.body.coe, req.body.reminder, req.body.me, req.params.id])
+        pool.query(query, [req.body.comment, req.body.coe_status, req.body.last_reminder_sent_at, req.body.me_form_status, req.params.id])
             .then(results => {
                 res.sendStatus(200);
             }).catch( error => {

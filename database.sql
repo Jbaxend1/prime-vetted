@@ -84,15 +84,15 @@ insert into student (id, first_name, last_name, cohort_name, cohort_id, course_n
 
 INSERT INTO "vet_tech" ("id", "student_id", "coe_status", "comment", "last_reminder_sent_at", "me_form_status")
 VALUES ('2', '3', 'Sent', 'Tried contacting: no answer', '2022-6-12', 'Requested'),
-('3', '6', 'Requested', 'Need to Call', '2022-4-20', 'Recieved'),
+('3', '6', 'Requested', 'Need to Call', '2022-4-20', 'Received'),
 ('4', '7', 'Sent', 'Very motivated', '2022-7-13', 'Submitted to VA'),
 ('5', '8', 'Requested', 'Need to email', '2022-4-20', 'Paid'),
-('6', '9', 'Sent', 'Call back', '2022-5-24', 'Recieved'),
-('7', '11', 'Recieved', 'Need to Call', '2022-5-20', 'Paid'),
+('6', '9', 'Sent', 'Call back', '2022-5-24', 'Received'),
+('7', '11', 'Received', 'Need to Call', '2022-5-20', 'Paid'),
 ('8', '12', 'Requested', 'Email back', '2022-7-21', 'Submitted to VA'),
 ('9', '15', 'Sent', 'Fun to talk to', '2022-3-16', 'Paid'),
 ('10', '16', 'Sent', 'Will get back to me.', '2022-1-20', 'Submitted to VA'),
-('11', '18', 'Requested', 'Need to Call', '2022-4-24', 'Recieved'),
+('11', '18', 'Requested', 'Need to Call', '2022-4-24', 'Received'),
 ('12', '19', 'Sent', 'Getting ready to transfer', '2022-8-20', 'Requested')
 ;
 

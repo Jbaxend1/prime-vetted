@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const student = (state = [], action) => {
+const studentList = (state = [], action) => {
     if (action.type === 'SET_LIST') {
         return action.payload;
     }
@@ -8,15 +8,24 @@ const student = (state = [], action) => {
     return state;
 }
 
-const studentDetail = (state = {}, action) => {
-    if (action.type === 'SET_STUDENT') {
+
+const defaultStudent = {
+    coe_status: '',
+    me_form_status: '',
+    comment: ''
+}
+
+const editStudent = (state = defaultStudent, action) => {
+    if (action.type === 'SET_EDIT_STUDENT') {
         return action.payload;
+    } else if (action.type === 'CLEAR') {
+        return defaultStudent;
     }
 
     return state;
 }
 
 export default combineReducers({
-   student,
-   studentDetail,
+   studentList,
+   editStudent,
   });
