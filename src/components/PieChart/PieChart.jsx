@@ -3,6 +3,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import {  useEffect } from 'react';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent'
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -79,16 +82,26 @@ function PieChart() {
 
 
     return (
-        <div>
-            <div className="chart-container">
-                <h2 style={{ textAlign: "center" }}>ISA vs Vet Tech</h2>
-                <Pie data={data}/>
-            </div>
-            <div>
-                <h2 style={{ textAlign: "center" }}>Vet Tech Placed vs Unplaced</h2>
-                <Pie data={dataPlaced} />
-            </div>
-        </div>
+        <Grid item xs={8} >
+            <Card elevation={2} style={{ width: '90%', display: 'flex', paddingLeft: '250px',}}>
+                <CardContent >
+                    <div className="chart-container">
+                        <h2 style={{ textAlign: "center" }}>ISA vs Vet Tech</h2>
+                        <Pie data={data}/>
+                    </div>
+                </CardContent>
+             </Card>
+             <br></br>
+             <Card elevation={2} style={{ width: '90%', display: 'flex', paddingLeft: '250px'}}>
+                <CardContent>
+                    <div>
+                        <h2 style={{ textAlign: "center" }}>Vet Tech Placed vs Unplaced</h2>
+                        <Pie data={dataPlaced} />
+                    </div>
+                </CardContent>
+            </Card>
+            
+        </Grid>
         
     )
 }
