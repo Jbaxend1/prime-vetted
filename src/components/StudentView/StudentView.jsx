@@ -142,7 +142,9 @@ function StudentView() {
                         {/* button to delete comment */}
                         <Button style={{ color: 'red', borderColor: 'GrayText' }}
                             variant='outlined'
-                            onClick={() => deleteNote()}>
+                            // for clear notes button
+                            // onClick={() => deleteNote()}
+                            >
                             Clear Notes
                         </Button>
                     </CardContent>
